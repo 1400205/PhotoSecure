@@ -24,7 +24,7 @@ if(isset($_POST["submit"]))
         //$target_file = $target_file.$timestamp;
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             $id = $row['userID'];
-            $addsql = "INSERT INTO photos (title, description, postDate, url, userID) VALUES ('$title','$desc',now(),'$target_file','$id')";
+            $addsql = "INSERT INTO photosSecure (title, description, postDate, url, userID) VALUES ('$title','$desc',now(),'$target_file','$id')";
             $query = mysqli_query($db, $addsql) or die(mysqli_error($db));
             if ($query) {
                 $msg = "Thank You! The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. click <a href='photos.php'>here</a> to go back";
