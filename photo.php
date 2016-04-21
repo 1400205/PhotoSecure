@@ -20,7 +20,7 @@ $login_user= $_SESSION["username"];
     <?php
         if(isset($_GET['id'])){
             $photoID = $_GET['id'];
-            $photoSql="SELECT * FROM photos WHERE photoID='$photoID'";
+            $photoSql="SELECT * FROM photosSecure WHERE photoID='$photoID'";
             $photoresult=mysqli_query($db,$photoSql) or die(mysqli_error($db));
             if(mysqli_num_rows($photoresult)==1){
                 $photoRow = mysqli_fetch_assoc($photoresult);
@@ -30,7 +30,7 @@ $login_user= $_SESSION["username"];
                 echo " <p>".$photoRow['description']."</p>";
 
 
-                $commentSql="SELECT * FROM comments WHERE photoID='$photoID'";
+                $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
                 $commentresult=mysqli_query($db,$commentSql) or die(mysqli_error($db));
                 if(mysqli_num_rows($commentresult)>1) {
 
