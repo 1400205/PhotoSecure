@@ -1,10 +1,11 @@
 <?php
 session_start();
+$login_user= $_SESSION["username"];
 ?>
 <?php
 	include("check.php");
 	include("userphotos.php");
-$login_user= $_SESSION["username"];
+
 ?>
 
 <!doctype html>
