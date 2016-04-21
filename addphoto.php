@@ -15,7 +15,7 @@ if(isset($_POST["submit"]))
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
     $uploadOk = 1;
 
-    $sql="SELECT userID FROM users WHERE username='$name'";
+    $sql="SELECT userID FROM usersSecure WHERE username='$name'";
     $result=mysqli_query($db,$sql);
     $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
 
