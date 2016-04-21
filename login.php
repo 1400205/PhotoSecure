@@ -1,5 +1,8 @@
+
 <?php
-	session_start();
+session_start();
+?>
+<?php
 	include("connection.php"); //Establishing connection with our database
 	
 	$error = ""; //Variable for storing our errors.
