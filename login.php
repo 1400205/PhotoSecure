@@ -17,7 +17,7 @@
 
 			
 			//Check username and password from database
-			$sql="SELECT userID FROM usersSecure WHERE username='$username' and password='$password'";
+			$sql="SELECT userID FROM userssecure WHERE username='$username' and password='$password'";
 			$result=mysqli_query($db,$sql);
 			$row=mysqli_fetch_array($result,MYSQLI_ASSOC) ;
 			
