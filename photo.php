@@ -1,4 +1,8 @@
 <?php
+session_start();
+$login_user= $_SESSION["username"];
+?>
+<?php
 	include("check.php");
     include("connection.php");
 ?>
