@@ -24,7 +24,7 @@ $login_user= $_SESSION["username"];
             $photoresult=mysqli_query($db,$photoSql) or die(mysqli_error($db));
             if(mysqli_num_rows($photoresult)==1){
                 $photoRow = mysqli_fetch_assoc($photoresult);
-                echo "<h1>".$photoRow['title']."</h1>";
+                echo "<p>".$photoRow['title']."</p>";
                 echo "<h3>".$photoRow['postDate']."</h3>";
                 echo "<img src='".$photoRow['url']."'/>";
                 echo " <p>".$photoRow['description']."</p>";
