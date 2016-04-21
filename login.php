@@ -27,7 +27,7 @@
 			if(mysqli_num_rows($result) == 1)
 			{
 				$_SESSION['username'] = $username; // Initializing Session
-				header("location: photo.php"); // Redirecting To Other Page
+				header("location: photos.php"); // Redirecting To Other Page
 			}else
 			{
 				$error = "Incorrect username or password.";
