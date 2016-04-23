@@ -6,10 +6,6 @@ session_start();
 	include("connection.php"); //Establishing connection with our database
 $mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 if(!$mysqli) die('Could not connect$: ' . mysqli_error());
-mysqli_select_db($mysqli, "BJTS");
-if(!$mysqli) die('Could not connect to DB$: ' . mysqli_error());
-
-
 
 $error = ""; //Variable for storing our errors.
 	if(isset($_POST["submit"]))
