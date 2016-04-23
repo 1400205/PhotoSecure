@@ -13,16 +13,18 @@ $error = ""; //Variable for storing our errors.
 		if(empty($_POST["username"]) || empty($_POST["password"]))
 		{
 			$error = "Both fields are required.";
-		}else
+		}
+
+		else
 		{
 			// Define $username and $password
 			$username=$_POST['username'];
 			$password=$_POST['password'];
 
 			// Prepare IN parameters
-			$mysqli->query("SET @username  = " . "'" . $mysqli->real_escape_string($username) . "'");
-			$mysqli->query("SET @password   = " . "'" . $mysqli->real_escape_string(password) . "'");
-			$mysqli->query("SET @userID = 0");
+			//$mysqli->query("SET @username  = " . "'" . $mysqli->real_escape_string($username) . "'");
+			//$mysqli->query("SET @password   = " . "'" . $mysqli->real_escape_string(password) . "'");
+			$mysqli->query("SET @userID = 111");
 
 			
 			//Check username and password from database
@@ -30,8 +32,9 @@ $error = ""; //Variable for storing our errors.
 
 			//call procedure
 			//$sql="CALL getAll($username,$password)";
-			$result = $mysqli->query("CALL getAll(@username,@password,@userID)");
-			if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
+			$result = $mysqli->query("CALL getAll($username,$password,@userID)");
+			$result = $mysqli->query( 'SELECT @userID' );
+			//if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
 			if($result->num_rows ==1){
 				$row=mysqli_fetch_array($result,MYSQLI_ASSOC) ;
 				$userid=$row['userID'];//Get user ID
