@@ -24,7 +24,7 @@ $error = ""; //Variable for storing our errors.
 			// Prepare IN parameters
 			//$mysqli->query("SET @username  = " . "'" . $mysqli->real_escape_string($username) . "'");
 			//$mysqli->query("SET @password   = " . "'" . $mysqli->real_escape_string(password) . "'");
-			$mysqli->query("SET @userID = 111");
+			$mysqli->query("SET @userID = 0");
 
 			
 			//Check username and password from database
