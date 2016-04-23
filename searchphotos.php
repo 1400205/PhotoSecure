@@ -18,8 +18,8 @@
 <div class="formbox">
 	<form method="post" action="">
 		<label>Photos by Username:</label><br>
-		<input type="text" name="username" placeholder="username" /><br><br>
-		<input type="submit" name="submit" value="search" />
+		<textarea name="username" placeholder="username" cols="40" rows="5"  ></textarea><br><br>
+		<input type="submit" name="submit" value="search"/>
 	</form>
 	<div class="error"><?php echo $error;?></div>
 </div>
