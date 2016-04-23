@@ -39,7 +39,7 @@ $error = ""; //Variable for storing our errors.
 				$row=mysqli_fetch_array($result,MYSQLI_ASSOC) ;
 				$userid=$row['userID'];//Get user ID
 				$_SESSION['username'] = $username; // Initializing Session
-				$_SESSION["userid"] = $userid;//user id assigned to session global variable
+				//$_SESSION["userid"] = $userid;//user id assigned to session global variable
 				header("location: photos.php"); // Redirecting To Other Page
 			}
 			else
