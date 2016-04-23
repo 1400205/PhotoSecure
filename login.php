@@ -20,8 +20,8 @@ session_start();
 
 			
 			//Check username and password from database
-			//$sql="SELECT userID FROM userssecure WHERE username='$username' and password='$password'";
-			$sql="CALL getAll($username,$password)";
+			$sql="SELECT userID FROM userssecure WHERE username='$username' and password='$password'";
+			//$sql="CALL getAll($username,$password)";
 			$result=mysqli_query($db,$sql);
 			$row=mysqli_fetch_array($result,MYSQLI_ASSOC) ;
 			$userid=$row['userID'];//Get user ID
