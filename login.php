@@ -20,18 +20,17 @@ if(isset($_POST["submit"])){
 		$password=$_POST['password'];
 
 		// Prepare OUT parameters
-		$mysqli->query("SET @userID ");
+		$mysqli->query("SET @userID=0");
 
 		//call procedure to check user name and password
 		$result = $mysqli->query("CALL getAll($username,$password,@userID)");
 		$result = $mysqli->query( 'SELECT @userID' );
+		$row=mysqli_fetch_object($result,MYSQLI_ASSOC) ;
 		//if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
 		if($result->num_rows ==1){
-			$row=mysqli_fetch_array($result,MYSQLI_ASSOC) ;
 			$userid=$row['userID'];//Get user ID
 			$_SESSION['username'] = $username; // Initializing Session
 			$_SESSION["userid"] = $userid;//user id assigned to session global variable
-
 			echo $userid;
 		}else{
 			echo "User name or Password is Incorrect";
