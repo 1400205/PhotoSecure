@@ -19,6 +19,18 @@ if(isset($_POST["submit"])){
 		if ($mysqli->connect_errno) {
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 		}
+
+		//create procedure
+
+		if (!$mysqli->query("DROP PROCEDURE IF EXISTS getUserID") ||
+			!$mysqli->query('CREATE PROCEDURE getUserID(IN loc_username varchar(255),
+			 IN loc_password varchar(255), OUT loc_userID int)
+			BEGIN
+ 			SELECT `userID` INTO loc_userID FROM userssecure WHERE username = loc_username
+     	AND password = loc_password;END;')) {
+			echo "Stored procedure creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		}
+
 		// Define $username and $password
 		$username=$_POST['username'];
 		$password=$_POST['password'];
