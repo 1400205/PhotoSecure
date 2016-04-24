@@ -47,10 +47,10 @@ if(isset($_POST["submit"])){
 
 		if(mysqli_num_rows($res) == 1 ){
 
-			header("location: logout.php"); // Redirecting
-				//$userid = $row['p_out'];
+			header("location: photo.php"); // Redirecting
+				$userid = $row['p_out'];
 
-				//echo $userid;
+				echo $userid;
 			}
 
 
