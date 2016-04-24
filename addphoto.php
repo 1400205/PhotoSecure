@@ -25,14 +25,22 @@ if(isset($_POST["submit"]))
         //$target_file = $target_file.$timestamp;
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             //$id = $row['userID'];
-            $addsql = "INSERT INTO photosSecure (title, description, postDate, url, userID) VALUES ('$title','$desc',now(),'$target_file','$userID')";
-            $query = mysqli_query($db, $addsql) or die(mysqli_error($db));
-            if ($query) {
-                $msg = "Thank You! The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. click <a href='photos.php'>here</a> to go back";
+            if ($mysqli->connect_errno) {
+                echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
             }
 
-        } else {
-            $msg = "Sorry, there was an error uploading your file.";
+            //call procedure
+            if ( $mysqli->query("CALL sp_insertphotos ('$title','$desc','$target_file','$userID')"))  {
+
+
+                $msg = "Thank You! The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. click <a href='photos.php'>here</a> to go back";
+
+            }else{
+                echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+                $msg = "Sorry, there was an error uploading your file.";
+            }
+
+
         }
         //echo $name." ".$email." ".$password;
 
