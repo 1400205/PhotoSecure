@@ -22,23 +22,19 @@ if(isset($_POST["submit"])){
 		// Prepare OUT parameters
 		$mysqli->query("SET @userID=0");
 
-		//call procedure to check user name and password
-		$result = $mysqli->query("CALL getAll($username,$password,@userID)");
-		$result = $mysqli->query( 'SELECT @userID AS getuserid' );
-		$row=$result->fetch_assoc();
-		// $row=mysqli_fetch_assoc($result);
-		//$userid=$row['getuserid'];
-		//if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
-		if(mysqli_num_rows($result) == 1 )
-		{
-			$userid = $row['getuserid'];//Get user ID
-			$_SESSION['username'] = $username; // Initializing Session
-			$_SESSION["userid"] = $userid;//user id assigned to session global variable
-			echo $userid;
-
-		}else{
-			echo "User name or Password is Incorrect";
+		if (!$mysqli->query("SET @userID = 1") || !$mysqli->query("CALL getAll($username,$password,@userID)")) {
+			echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
 		}
+
+		if (!($res = $mysqli->query("SELECT @userID as p_out"))) {
+			echo "Fetch failed: (" . $mysqli->errno . ") " . $mysqli->error;
+		}else {
+
+			$row = $res->fetch_assoc();
+			echo $row['_p_out'];
+		}
+
+
 
 
 
