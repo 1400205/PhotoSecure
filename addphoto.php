@@ -42,22 +42,22 @@ if(isset($_POST["submit"]))
 
             //create procedure
 
-            if (!$mysqli->query("DROP PROCEDURE IF EXISTS insertPhoto") ||
-                !$mysqli->query('CREATE PROCEDURE insertPhoto(IN strtitle varchar(255),IN strDesc varchar(255),
-                IN datpostDate(DateTime),IN strurl text(500), IN intuserID int(11))
-			    BEGIN
-			        INSERT INTO photosecure
-                ( title,description,postDate,url,userID )
-                VALUES (strtitle, strDesc,datpostDate,strurl, intuserID);END;')) {
-                echo "Stored procedure creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
-            }
+            //if (!$mysqli->query("DROP PROCEDURE IF EXISTS insertPhoto") ||
+               // !$mysqli->query('CREATE PROCEDURE insertPhoto(IN strtitle varchar(255),IN strDesc varchar(255),
+               // IN datpostDate(DateTime),IN strurl text(500), IN intuserID int(11))
+			   // BEGIN
+			    //    INSERT INTO photosecure
+               // ( title,description,postDate,url,userID )
+               // VALUES (strtitle, strDesc,datpostDate,strurl, intuserID);END;')) {
+               // echo "Stored procedure creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
+           // }
 
             //call procedure
-            if (! $mysqli->query("CALL insertPhoto ('$title','$desc', Now(),'$target_file','$userID')"))  {
+            if (! $mysqli->query("CALL sp_insertphotos ('$title','$desc', Now(),'$target_file','$userID')"))  {
                 echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
                // $msg = "Sorry, there was an error uploading your file.";
-            }
-            if ($mysqli) {
+            }else{
+
                 $msg = "Thank You! The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded. click <a href='photos.php'>here</a> to go back";
 
             }
