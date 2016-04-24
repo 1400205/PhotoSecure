@@ -42,18 +42,18 @@ if(isset($_POST["submit"])){
 			echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
 		}
 
-		if (($res = $mysqli->query("SELECT @userID as p_out"))) {
+		$res = $mysqli->query("SELECT @userID as p_out");
 			$row = $res->fetch_assoc();
 			if(mysqli_num_rows($res) == 1 ){
-				//$userid = $row['p_out'];
-				header("location: photos.php"); // Redirecting
-			//echo $userid;
+				$userid = $row['p_out'];
+				//header("location: photos.php"); // Redirecting
+			echo $userid;
 			}
-		}else {
+		else {
 
 			echo "Fetch failed: (" . $mysqli->errno . ") " . $mysqli->error;
 			echo $error = "Incorrect username or password.";
-		}
+
 
 
 
@@ -61,6 +61,6 @@ if(isset($_POST["submit"])){
 
 	}
 
-}
+}}
 
 
