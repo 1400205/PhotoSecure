@@ -53,7 +53,7 @@ if(isset($_POST["submit"]))
            // }
 
             //call procedure
-            if (! $mysqli->query("CALL sp_insertphotos ('$title','$desc', Now(),'$target_file','$userID')"))  {
+            if (! $mysqli->query("CALL sp_insertphotos('$title','$desc','$target_file','$userID')"))  {
                 echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
                // $msg = "Sorry, there was an error uploading your file.";
             }else{
