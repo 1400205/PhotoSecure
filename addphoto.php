@@ -30,14 +30,14 @@ if(isset($_POST["submit"]))
             }
 
             //call procedure
-            if ( $mysqli->query("CALL sp_insertphotos ('$title','$desc','$target_file','$userID')"))  {
-
-
+            if (! $mysqli->query("CALL sp_insertphotos ('$title','$desc','$target_file','$userID')"))  {
+                echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+               // $msg = "Sorry, there was an error uploading your file.";
+            }
+            else{
                 $msg = "Thank You! The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. click <a href='photos.php'>here</a> to go back";
 
-            }else{
-                echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
-                $msg = "Sorry, there was an error uploading your file.";
+
             }
 
 
