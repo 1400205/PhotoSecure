@@ -59,15 +59,15 @@ session_start();
 			}
 
 
-			if ($res = $mysqli->query("SELECT @userID as userID")) {
+			$res = $mysqli->query("SELECT @userID as userID");
 				$row = $res->fetch_assoc();}
 			$userid=$row['userID'];//Get user ID
 
 
 
-			if(!(mysqli_num_rows($res) == 1) AND ($userid < 1))
+			if ($userid < 1)
 			{
-				$error = "Incorrect username or password.";
+				echo  "Incorrect username or password.";
 			}else
 			{
 				$_SESSION['username'] = $username; // Initializing Session
@@ -75,7 +75,7 @@ session_start();
 				header("location: photos.php"); // Redirecting To Other Page
 			}
 
-		}
+
 	}
 
 ?>
