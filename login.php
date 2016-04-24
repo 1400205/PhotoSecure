@@ -11,24 +11,23 @@ session_start();
 		if(empty($_POST["username"]) || empty($_POST["password"]))
 		{
 			$error = "Both fields are required.";
-		}else
-		{
+		}else {
 			// Define $username and $password
-			$username=$_POST['username'];
-			$password=$_POST['password'];
+			$username = $_POST['username'];
+			$password = $_POST['password'];
 
 
-			
 			//Check username and password from database
 			//$sql="SELECT userID FROM userssecure WHERE username='$username' and password='$password'";
 			//$result=mysqli_query($db,$sql);
 			//$row=mysqli_fetch_array($result,MYSQLI_ASSOC) ;
 			//$userid=$row['userID'];//Get user ID
-			
+
 			//If username and password exist in our database then create a session.
 			//Otherwise echo error.
 
-			$mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+			//instance of connection to dbase
+			$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 			//if(!$mysqli) die('Could not connect$: ' . mysqli_error());
 
 			//test connection
@@ -43,7 +42,8 @@ session_start();
 			 IN loc_password varchar(255), OUT loc_userID int)
 			BEGIN
  			SELECT `userID` INTO loc_userID FROM userssecure WHERE username = loc_username
-     		AND password = loc_password;END;')) {
+     		AND password = loc_password;END;')
+			) {
 				echo "Stored procedure creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
 			}
 
@@ -54,13 +54,14 @@ session_start();
 			// Prepare OUT parameters
 			$mysqli->query("SET @userID=0");
 
-			if ( !$mysqli->query("CALL getUserID('$username','$password',@userID)"))  {
+			if (!$mysqli->query("CALL getUserID('$username','$password',@userID)")) {
 				echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
 			}
 
 
 			$res = $mysqli->query("SELECT @userID as userID");
-				$row = $res->fetch_assoc();}
+		}
+			$row = $res->fetch_assoc();
 			$userid=$row['userID'];//Get user ID
 
 
