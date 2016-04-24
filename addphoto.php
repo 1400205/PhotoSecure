@@ -9,17 +9,18 @@ if(isset($_POST["submit"]))
     $desc = $_POST["desc"];
     $url = "test";
     $name = $_SESSION["username"];
+    $userID=$_SESSION["userid"];
 
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
     $uploadOk = 1;
 
-    $sql="SELECT userID FROM usersSecure WHERE username='$name'";
-    $result=mysqli_query($db,$sql);
-    $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-
-    if(mysqli_num_rows($result) == 1) {
+    //$sql="SELECT userID FROM usersSecure WHERE username='$name'";
+   // $result=mysqli_query($db,$sql);
+   // $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
+    // if(mysqli_num_rows($result) == 1)
+    if($userID) {
         //$timestamp = time();
         //$target_file = $target_file.$timestamp;
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
