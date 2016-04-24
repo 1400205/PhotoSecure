@@ -20,7 +20,7 @@ if(isset($_POST["submit"])){
 		$password=$_POST['password'];
 
 		// Prepare OUT parameters
-		$mysqli->query("SET @userID=0");
+		$mysqli->query("SET @userID");
 
 		//call procedure to check user name and password
 		$result = $mysqli->query("CALL getAll($username,$password,@userID)");
