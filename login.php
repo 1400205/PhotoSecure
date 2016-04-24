@@ -54,14 +54,7 @@ if(isset($_POST["submit"])){
 
 			echo "Fetch failed: (" . $mysqli->errno . ") " . $mysqli->error;
 			echo $error = "Incorrect username or password.";
-
-
-
-
-
-
 	}
-
 }}
 
 
