@@ -13,7 +13,7 @@ if(isset($_POST["submit"])){
 
 		include("connection.php"); //Establishing connection with our database
 		$mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
-		if(!$mysqli) die('Could not connect$: ' . mysqli_error());
+		//if(!$mysqli) die('Could not connect$: ' . mysqli_error());
 
 		//test connection
 		if ($mysqli->connect_errno) {
@@ -46,16 +46,14 @@ if(isset($_POST["submit"])){
 			$row = $res->fetch_assoc();}
 
 		if(mysqli_num_rows($res) == 1 ){
-				$userid = $row['p_out'];
 
-				echo $userid;
-				//header("location: logout.php"); // Redirecting
-			}
-			else {
+			header("location: logout.php"); // Redirecting
+				//$userid = $row['p_out'];
 
-			echo "Fetch failed: (" . $mysqli->errno . ") " . $mysqli->error;
-			echo $error = "Incorrect username or password.";
+				//echo $userid;
 			}
+
+
 
 
 		}
