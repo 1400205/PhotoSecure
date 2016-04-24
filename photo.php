@@ -16,7 +16,7 @@ $login_userID= $_SESSION["userid"];
 </head>
 
 <body>
-<h4>Welcome <?php echo $login_userID;?>  <a href="photos.php" style="font-size:18px">Photos</a>||<a href="searchphotos.php" style="font-size:18px">Search</a>||<a href="logout.php" style="font-size:18px">Logout</a></h4>
+<h4>Welcome <?php echo $login_user;?>  <a href="photos.php" style="font-size:18px">Photos</a>||<a href="searchphotos.php" style="font-size:18px">Search</a>||<a href="logout.php" style="font-size:18px">Logout</a></h4>
 <div id="photo">
     <?php
         if(isset($_GET['id'])){
