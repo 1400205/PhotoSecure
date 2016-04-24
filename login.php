@@ -38,17 +38,18 @@ if(isset($_POST["submit"])){
 		// Prepare OUT parameters
 		$mysqli->query("SET @userID=0");
 
-		if ( !$mysqli->query("CALL getUserID('$username','$password',@userID)")) {
+		if ( !$mysqli->query("CALL getUserID('$username','$password',@userID)"))  {
 			echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
 		}
 
-		$res = $mysqli->query("SELECT @userID as p_out");
-			$row = $res->fetch_assoc();
+		if ($res = $mysqli->query("SELECT @userID as p_out")) {
+			$row = $res->fetch_assoc();}
+
 		if(mysqli_num_rows($res) == 1 ){
-				//$userid = $row['p_out'];
+				$userid = $row['p_out'];
 
 				//echo $userid;
-				header("location: logout.php"); // Redirecting
+				//header("location: logout.php"); // Redirecting
 			}
 			else {
 
