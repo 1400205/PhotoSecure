@@ -44,10 +44,15 @@ if(isset($_POST["submit"])){
 
 		if (!($res = $mysqli->query("SELECT @userID as p_out"))) {
 			echo "Fetch failed: (" . $mysqli->errno . ") " . $mysqli->error;
+			echo $error = "Incorrect username or password.";
 		}else {
 
 			$row = $res->fetch_assoc();
-			echo $row['p_out'];
+			$userid = $row['p_out'];
+			$_SESSION['username'] = $username; // Initializing Session
+			$_SESSION["userid"] = $userid;//user id assigned to session global variable
+			header("location: photos.php"); // Redirecting To Other Page
+
 		}
 
 
