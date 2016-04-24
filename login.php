@@ -24,12 +24,12 @@ if(isset($_POST["submit"])){
 
 		//call procedure to check user name and password
 		$result = $mysqli->query("CALL getAll($username,$password,@userID)");
-		$result = $mysqli->query( 'SELECT @userID AS result' );
-		$row=$result->fetch_field();
+		$result = $mysqli->query( 'SELECT @userID AS getuserid' );
+		$row=$result->fetch_assoc();
 		 //$row=mysqli_fetch_object($result,MYSQLI_ASSOC);
 		//if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
-		if($row['result']==TRUE) {
-			$userid = $row['result'];//Get user ID
+		if($row['getuserid']==TRUE) {
+			$userid = $row['getuserid'];//Get user ID
 			$_SESSION['username'] = $username; // Initializing Session
 			$_SESSION["userid"] = $userid;//user id assigned to session global variable
 			echo $userid;
