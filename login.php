@@ -65,14 +65,14 @@ session_start();
 
 
 
-			if(mysqli_num_rows($res) == 1)
+			if(!(mysqli_num_rows($res) == 1) AND ($userid < 1))
+			{
+				$error = "Incorrect username or password.";
+			}else
 			{
 				$_SESSION['username'] = $username; // Initializing Session
 				$_SESSION["userid"] = $userid;//user id assigned to session global variable
 				header("location: photos.php"); // Redirecting To Other Page
-			}else
-			{
-				$error = "Incorrect username or password.";
 			}
 
 		}
