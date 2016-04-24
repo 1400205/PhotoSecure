@@ -44,17 +44,21 @@ if(isset($_POST["submit"])){
 
 		$res = $mysqli->query("SELECT @userID as p_out");
 			$row = $res->fetch_assoc();
-			if(mysqli_num_rows($res) == 1 ){
+		if(mysqli_num_rows($res) == 1 ){
 				//$userid = $row['p_out'];
 
 				//echo $userid;
-				header("location: photos.php"); // Redirecting
+				header("location: logout.php"); // Redirecting
 			}
-		else {
+			else {
 
 			echo "Fetch failed: (" . $mysqli->errno . ") " . $mysqli->error;
 			echo $error = "Incorrect username or password.";
+			}
+
+
+		}
+
 	}
-}}
 
 
