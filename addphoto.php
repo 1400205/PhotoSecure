@@ -31,6 +31,7 @@ if(isset($_POST["submit"]))
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             //$id = $row['userID'];
 
+           //connect to db
             $mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
             //if(!$mysqli) die('Could not connect$: ' . mysqli_error());
 
