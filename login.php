@@ -25,8 +25,8 @@ if(isset($_POST["submit"])){
 		//call procedure to check user name and password
 		$result = $mysqli->query("CALL getAll($username,$password,@userID)");
 		$result = $mysqli->query( 'SELECT @userID AS getuserid' );
-		$row=$result->fetch_assoc();
-		 //$row=mysqli_fetch_object($result,MYSQLI_ASSOC);
+		//$row=$result->fetch_assoc();
+		 $row=mysqli_fetch_object('getuserid',MYSQLI_ASSOC);
 		//if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
 		if($row['getuserid']==TRUE) {
 			$userid = $row['getuserid'];//Get user ID
