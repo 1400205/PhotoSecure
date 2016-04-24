@@ -32,6 +32,7 @@ if(isset($_POST["submit"])){
 			$_SESSION['username'] = $username; // Initializing Session
 			$_SESSION["userid"] = $userid;//user id assigned to session global variable
 			header("location: photos.php"); // Redirecting To Other Page
+			echo $userid;
 		}else{
 			echo "User name or Password is Incorrect";
 		}
