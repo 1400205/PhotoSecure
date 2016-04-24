@@ -53,7 +53,7 @@ if(isset($_POST["submit"])){
 			header("location: photo.php"); // Redirecting
 
 
-				echo $_SESSION['userid'];
+				//echo $_SESSION['userid'];
 			}
 
 
