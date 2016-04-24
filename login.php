@@ -46,13 +46,14 @@ if(isset($_POST["submit"])){
 			$row = $res->fetch_assoc();}
 
 		if(mysqli_num_rows($res) == 1 ){
+			$_SESSION['userid']=$row['p_out'];
 
 			$_SESSION['username'] = $username; // Initializing Session
 
 			header("location: photo.php"); // Redirecting
-				//$userid = $row['p_out'];
 
-				//echo $userid;
+
+				echo $_SESSION['userid'];
 			}
 
 
@@ -61,5 +62,4 @@ if(isset($_POST["submit"])){
 		}
 
 	}
-
-
+?>
