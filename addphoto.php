@@ -30,10 +30,14 @@ if(isset($_POST["submit"]))
         //$target_file = $target_file.$timestamp;
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             //$id = $row['userID'];
+
+            $mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+            //if(!$mysqli) die('Could not connect$: ' . mysqli_error());
+
+            //test connection
             if ($mysqli->connect_errno) {
                 echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
             }
-
 
 
             //create procedure
