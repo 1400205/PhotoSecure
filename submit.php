@@ -22,9 +22,15 @@ if(isset($_POST["submit"]))
     }
     else
     {
+        if ($mysqli->connect_errno) {
+            echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+        }
+
         //call procedure
-        $result = $mysqli->query("CALL sp_insertUserDetails($email,$username,$password)");
-        $result = $mysqli->query( 'SELECT @userID' );
+        if ( !$mysqli->query("CALL CALL sp_insertUserDetails('$email','$username','$password')"))  {
+            echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+        }
+
         //if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
         //echo $name." ".$email." ".$password;
        // $query = mysqli_query($db, "INSERT INTO usersSecure (username, email, password) VALUES ('$name', '$email', '$password')")or die(mysqli_error($db));
