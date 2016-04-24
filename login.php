@@ -38,7 +38,7 @@ if(isset($_POST["submit"])){
 		// Prepare OUT parameters
 		$mysqli->query("SET @userID=0");
 
-		if (!$mysqli->query("SET @userID = 1") || !$mysqli->query("CALL getAll($username,$password,@userID)")) {
+		if ( !$mysqli->query("CALL getUserID($username,$password,@userID)")) {
 			echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
 		}
 
@@ -47,7 +47,7 @@ if(isset($_POST["submit"])){
 		}else {
 
 			$row = $res->fetch_assoc();
-			echo $row['_p_out'];
+			echo $row['p_out'];
 		}
 
 
