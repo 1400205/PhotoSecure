@@ -1,5 +1,11 @@
 <?php
 session_start();
+?>
+<?php
+$name = $_SESSION["username"];
+$userID=$_SESSION["userid"];
+?>
+<?php
 include("connection.php"); //Establishing connection with our database
 
 $msg = ""; //Variable for storing our errors.
@@ -8,8 +14,7 @@ if(isset($_POST["submit"]))
     $title = $_POST["title"];
     $desc = $_POST["desc"];
     $url = "test";
-    $name = $_SESSION["username"];
-    $userID=$_SESSION["userid"];
+
 
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -48,11 +53,11 @@ if(isset($_POST["submit"]))
                 echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
                // $msg = "Sorry, there was an error uploading your file.";
             }
-            else{
-                $msg = "Thank You! The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded. click <a href='photos.php'>here</a> to go back";
-
+            if ($mysqli) {
+                $msg = "Thank You! The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded. click <a href='photos.php'>here</a> to go back";
 
             }
+
 
 
         }
