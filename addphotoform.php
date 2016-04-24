@@ -3,9 +3,10 @@ session_start();
 
 ?>
 <?php
-include("check.php");
+//include("check.php");
 include("addphoto.php");
 $login_user= $_SESSION["username"];
+$login_userID= $_SESSION["userid"];
 ?>
 
 <!doctype html>
