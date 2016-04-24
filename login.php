@@ -20,13 +20,13 @@ if(isset($_POST["submit"])){
 		$password=$_POST['password'];
 
 		// Prepare OUT parameters
-		$mysqli->query("SET @userID");
+		$mysqli->query("SET @userID=0");
 
 		//call procedure to check user name and password
 		$result = $mysqli->query("CALL getAll($username,$password,@userID)");
 		$result = $mysqli->query( 'SELECT @userID AS getuserid' );
 		//$row=$result->fetch_assoc();
-		 $row=mysqli_fetch_array($result);
+		 $row=mysqli_fetch_assoc($result);
 		$userid=$row['getuserid'];
 		//if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
 		if(mysqli_num_rows($result) == 1 ) {
