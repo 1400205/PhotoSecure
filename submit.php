@@ -27,7 +27,7 @@ if(isset($_POST["submit"]))
         }
 
         //call procedure
-        if ( !$mysqli->query("CALL CALL sp_insertUserDetails('$email','$username','$password')"))  {
+        if ( !$mysqli->query("CALL CALL sp_insertUserDetails('$email','$name','$password')"))  {
             echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
         }
 
