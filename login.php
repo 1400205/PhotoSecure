@@ -15,6 +15,10 @@ if(isset($_POST["submit"])){
 		$mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 		if(!$mysqli) die('Could not connect$: ' . mysqli_error());
 
+		//test connection
+		if ($mysqli->connect_errno) {
+			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+		}
 		// Define $username and $password
 		$username=$_POST['username'];
 		$password=$_POST['password'];
