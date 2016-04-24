@@ -37,7 +37,7 @@ if(isset($_POST["submit"]))
 
             //test connection
             if ($mysqli->connect_errno) {
-                echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+                echo "Connection Fail:Check network connection";//: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
             }
 
 
@@ -55,7 +55,7 @@ if(isset($_POST["submit"]))
 
             //call procedure
             if (! $mysqli->query("CALL sp_insertphotos('$title','$desc','$target_file','$userID')"))  {
-                echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+                //echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
                // $msg = "Sorry, there was an error uploading your file.";
             }else{
 

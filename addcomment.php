@@ -31,14 +31,14 @@ if(isset($_POST["submit"]))
 
         //test connection
         if ($mysqli->connect_errno) {
-            echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+            echo "Connetion Failed:check network connection";// to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
         }
 
 
 
         //call procedure
         if (! $mysqli->query("CALL sp_insertComments('$desc','$photoID','$userID')"))  {
-            echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+            //echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
             // $msg = "Sorry, there was an error uploading your file.";
         }else{
 
