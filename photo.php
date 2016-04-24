@@ -1,6 +1,7 @@
 <?php
 session_start();
 $login_user= $_SESSION["username"];
+$login_userID= $_SESSION["userid"];
 ?>
 <?php
 	include("check.php");
@@ -15,7 +16,7 @@ $login_user= $_SESSION["username"];
 </head>
 
 <body>
-<h4>Welcome <?php echo $login_user;?> <a href="photos.php" style="font-size:18px">Photos</a>||<a href="searchphotos.php" style="font-size:18px">Search</a>||<a href="logout.php" style="font-size:18px">Logout</a></h4>
+<h4>Welcome <?php echo $login_user;?> ||<?php echo $login_userID;?> <a href="photos.php" style="font-size:18px">Photos</a>||<a href="searchphotos.php" style="font-size:18px">Search</a>||<a href="logout.php" style="font-size:18px">Logout</a></h4>
 <div id="photo">
     <?php
         if(isset($_GET['id'])){
