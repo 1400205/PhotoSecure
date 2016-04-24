@@ -55,7 +55,7 @@ session_start();
 			$mysqli->query("SET @userID=0");
 
 			if (!$mysqli->query("CALL getUserID('$username','$password',@userID)")) {
-				echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+				//echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
 			}
 
 
