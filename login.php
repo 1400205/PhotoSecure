@@ -48,7 +48,7 @@ if(isset($_POST["submit"])){
 		if(mysqli_num_rows($res) == 1 ){
 				$userid = $row['p_out'];
 
-				//echo $userid;
+				echo $userid;
 				//header("location: logout.php"); // Redirecting
 			}
 			else {
