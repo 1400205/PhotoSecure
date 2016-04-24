@@ -29,8 +29,7 @@ if(isset($_POST["submit"])){
 		// $row=mysqli_fetch_assoc($result);
 		//$userid=$row['getuserid'];
 		//if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
-		//if(mysqli_num_rows($result) == 1 )
-		if($row['getuserid'])
+		if(mysqli_num_rows($result) == 1 )
 		{
 			$userid = $row['getuserid'];//Get user ID
 			$_SESSION['username'] = $username; // Initializing Session
