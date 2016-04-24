@@ -30,9 +30,9 @@ if(isset($_POST["submit"])){
 		//$userid=$row['getuserid'];
 		//if(!$result) die("CALL failed: (" . $mysqli->errno . ") " . $mysqli->error);
 		//if(mysqli_num_rows($result) == 1 )
-		if($result->num_rows>0)
+		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		if(mysqli_num_rows($result) == 1)
 		{
-			$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 			$userid = $row["userid"];//Get user ID
 			$_SESSION['username'] = $username; // Initializing Session
 			$_SESSION["userid"] = $userid;//user id assigned to session global variable
