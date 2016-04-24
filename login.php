@@ -67,7 +67,8 @@ session_start();
 
 			if ($userid < 1)
 			{
-				echo  "Incorrect username or password.";
+				 echo  $error=  "Incorrect username or password.";
+				header("location: login.php"); // Redirecting To Other Page
 			}else
 			{
 				$_SESSION['username'] = $username; // Initializing Session
