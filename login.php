@@ -45,9 +45,10 @@ if(isset($_POST["submit"])){
 		$res = $mysqli->query("SELECT @userID as p_out");
 			$row = $res->fetch_assoc();
 			if(mysqli_num_rows($res) == 1 ){
-				$userid = $row['p_out'];
-				//header("location: photos.php"); // Redirecting
-			echo $userid;
+				//$userid = $row['p_out'];
+
+				//echo $userid;
+				header("location: photos.php"); // Redirecting
 			}
 		else {
 
