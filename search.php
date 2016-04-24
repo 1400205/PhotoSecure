@@ -9,15 +9,16 @@ if(isset($_POST["submit"]))
     //if(!$mysqli) die('Could not connect$: ' . mysqli_error());
 
     //test connection
+    //only the expected connection error is returned to the user
     if ($mysqli->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+        echo "Connection Failed, Check and Connect Again";// (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
     }
 
     // Prepare OUT parameters
     $mysqli->query("SET @userID=0");
 
     if ( !$mysqli->query("CALL getUserIDbyUserName('$name',@userID)"))  {
-        echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+       // echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
     }
 
          //get user id into a variable
