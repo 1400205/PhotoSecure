@@ -1,7 +1,7 @@
 <?php
 
-include ("secureSessionID.php");//verify user session
-include ("inactiveTimeOut.php");//check user idle time
+//include ("secureSessionID.php");//verify user session
+//include ("inactiveTimeOut.php");//check user idle time
 $msg = "";
 //connections
 include("connection.php"); //Establishing connection with our database

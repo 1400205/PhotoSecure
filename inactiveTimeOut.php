@@ -7,7 +7,7 @@
  */
 //This is to log out idle users
 
-session_start();
+//session_start();
 if($_SESSION ['timeout']+ 60 < time()){
 
     //session timed out
