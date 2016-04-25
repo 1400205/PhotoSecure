@@ -35,14 +35,14 @@ if(isset($_POST["submit"]))
     $name = $_SESSION["username"];
 
     //clean user input
-    //$dec=mysqli_real_escape_string($db,$desc);
-   // $photoID=mysqli_real_escape_string($db,$photoID);
-   // $name=mysqli_real_escape_string($db,$name);
+    $dec=mysqli_real_escape_string($db,$desc);
+   $photoID=mysqli_real_escape_string($db,$photoID);
+   $name=mysqli_real_escape_string($db,$name);
 
     //clean inputs for xss
-   // $desc=xssafe($desc);
-    //$name=xssafe($name);
-    //$photoID=xssafe($photoID);
+    $desc=xss_cleaner($desc);
+    $name=xss_cleaner($name);
+    $photoID=xss_cleaner($photoID);
 
    // $sql="SELECT userID FROM usersSecure WHERE username='$name'";
    // $result=mysqli_query($db,$sql);
