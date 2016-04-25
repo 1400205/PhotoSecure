@@ -45,7 +45,7 @@ if (isset($_SESSION['uid'])) {
     }
 } else {
     session_regenerate_id(true); // Prevent's session fixation
-   //session_id(sha1(uniqid(microtime())); // Sets a random ID for the session
+    //session_id(sha1(uniqid(microtime())); // Sets a random ID for the session
     // Set the default values for the session
     setSessionDefaults();
     $_SESSION['ip'] = $IP; // Saves the user's IP
