@@ -1,6 +1,8 @@
 <?php
 session_start();
 include("connection.php"); //Establishing connection with our database
+include ("secureSessionID.php");//verify user session
+include ("inactiveTimeOut.php");//check user idle time
 ?>
 
 
@@ -10,6 +12,7 @@ include("connection.php"); //Establishing connection with our database
 
 $name = $_SESSION["username"];
 $userID=$_SESSION["userid"];
+
 ?>
 <?php
 $msg = ""; //Variable for storing our errors.
