@@ -13,6 +13,11 @@ $userID=$_SESSION["userid"];
 ?>
 <?php
 $msg = ""; //Variable for storing our errors.
+
+//function for xssafe
+function xssafe($data,$encoding='UTF-8'){
+    return htmlspecialchars($data,ENT_QUOTES|ENT_HTML401|ENT_HTML5,$encoding);}
+
 if(isset($_POST["submit"]))
 {
 
@@ -24,11 +29,7 @@ if(isset($_POST["submit"]))
     $dec=mysqli_real_escape_string($db,$desc);
     $photoID=mysqli_real_escape_string($db,$photoID);
     $name=mysqli_real_escape_string($db,$name);
-
-    //function for xssafe
-   function xssafe($data,$encoding='UTF-8'){
-    return htmlspecialchars($data,ENT_QUOTES|ENT_HTML401|ENT_HTML5,$encoding);}
-
+    $dec=xssafe($dec);
    // $sql="SELECT userID FROM usersSecure WHERE username='$name'";
    // $result=mysqli_query($db,$sql);
     //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
