@@ -12,13 +12,13 @@ $login_user= $_SESSION["username"];
 <?php
 if(!isset($_SESSION["timeout"])){
 $_SESSION['timeout'] = time();
-};
+}
 $st = $_SESSION['timeout'] + 60; //session time is 1 minute
 
 if(time() < $st){
 	echo 'Session will last 1 minute';
 	//echo $_SESSION['timeout'] = time();
-	header("Location: index.php");
+	session_destroy();
 }
 
 ?>
