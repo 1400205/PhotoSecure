@@ -32,9 +32,9 @@ if (isset($_SESSION['uid'])) {
     // If the IP or the navigator doesn't match with the one stored in the session
     // there's probably a session hijacking going on
     //session IP binding
-    $IP=getenv("REOMOTE_ADDR");
+    $IP=$_SERVER['REMOTE_ADDR'];
 
-    if ($_SESSION['ip'] !== getIp() || $_SESSION['user_agent_id'] !== getUserAgentId()) {
+    if ($_SESSION['ip'] !==$IP || $_SESSION['user_agent_id'] !== getUserAgentId()) {
         // Then it destroys the session
         session_unset();
         session_destroy();
