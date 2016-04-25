@@ -3,6 +3,8 @@ $resultText = "";
 if(isset($_POST["submit"]))
 {
     $name = $_POST["username"];
+    //filter user input
+    $name=mysqli_real_escape_string($db,$name);
 
     //instance of connection to dbase
     $mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);

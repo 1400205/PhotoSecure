@@ -20,9 +20,16 @@ $login_userID= $_SESSION["userid"];
 <div id="photo">
     <?php
         if(isset($_GET['id'])){
+
             $photoID = $_GET['id'];
+
+            //filter Get input
+            $photoID=mysqli_real_escape_string($db,$photoID);
+
             $photoSql="SELECT * FROM photosSecure WHERE photoID='$photoID'";
-            $photoresult=mysqli_query($db,$photoSql) or die(mysqli_error($db));
+
+            //prevent system errors from been seen by user
+            $photoresult=mysqli_query($db,$photoSql) or die("application cannot connect;check network");
             if(mysqli_num_rows($photoresult)==1){
                 $photoRow = mysqli_fetch_assoc($photoresult);
                 echo "<p>".$photoRow['title']."</p>";
@@ -32,7 +39,7 @@ $login_userID= $_SESSION["userid"];
 
 
                 $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
-                $commentresult=mysqli_query($db,$commentSql) or die(mysqli_error($db));
+                $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
                 if(mysqli_num_rows($commentresult)>1) {
 
                     echo "<h2> Comments </h2>";
