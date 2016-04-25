@@ -4,7 +4,7 @@ include("connection.php"); //Establishing connection with our database
 //include ("secureSessionID.php");//verify user session
 //include ("inactiveTimeOut.php");//check user idle time
 ?>
-
+<?php
 //get the session variables
 
 $name = $_SESSION["username"];
