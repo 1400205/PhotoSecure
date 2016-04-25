@@ -1,6 +1,6 @@
 <?php
 session_start();
-//include ("secureSessionID.php");//verify user session
+include ("secureSessionID.php");//verify user session
 //include ("inactiveTimeOut.php");//check user idle time
 ?>
 <?php
@@ -9,19 +9,7 @@ session_start();
 $login_user= $_SESSION["username"];
 
 ?>
-<?php
-if(!isset($_SESSION["timeout"])){
-$_SESSION['timeout'] = time();
-}
-$st = $_SESSION['timeout'] + 60; //session time is 1 minute
 
-if(time() < $st){
-	echo 'Session will last 1 minute';
-	//echo $_SESSION['timeout'] = time();
-	session_destroy();
-}
-
-?>
 
 <?php
 
