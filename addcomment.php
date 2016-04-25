@@ -17,11 +17,7 @@ $msg = ""; //Variable for storing our errors.
 //function for xssafe
 //function xssafe($data,$encoding='UTF-8'){
    // return htmlspecialchars($data,ENT_QUOTES|ENT_HTML401|ENT_HTML5,$encoding);}
-function xss_cleaner($input_str) {
-    $return_str = str_replace( array('<','>',"'",'"',')','('), array('&lt;','&gt;','&apos;','&#x22;','&#x29;','&#x28;'), $input_str );
-    $return_str = str_ireplace( '%3Cscript', '', $return_str );
-    return $return_str;
-}
+
 
 if(isset($_POST["submit"]))
 {
@@ -33,7 +29,13 @@ if(isset($_POST["submit"]))
     //clean user input
     $dec=mysqli_real_escape_string($db,$desc);
     //cleanup for xss
-    $dec=xss_cleaner($dec);
+    function xss_cleaner($input_str) {
+        $return_str = str_replace( array('<','>',"'",'"',')','('), array('&lt;','&gt;','&apos;','&#x22;','&#x29;','&#x28;'), $input_str );
+        $return_str = str_ireplace( '%3Cscript', '', $return_str );
+        return $return_str;
+    }
+
+    $desc=xss_cleaner($desc);
     $photoID=mysqli_real_escape_string($db,$photoID);
     $name=mysqli_real_escape_string($db,$name);
 
