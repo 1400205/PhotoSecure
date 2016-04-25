@@ -5,6 +5,9 @@ include("connection.php"); //Establishing connection with our database
 
 
 <?php
+//connect to db
+$mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+if(!$mysqli) die('Could not connect$: ' . mysqli_error());
 
 //get the session variables
 
@@ -13,18 +16,6 @@ $userID=$_SESSION["userid"];
 ?>
 <?php
 $msg = ""; //Variable for storing our errors.
-
-//function xss_cleaner_high
-function xssafe($data,$encoding='UTF-8'){
-    return htmlspecialchars($data,ENT_QUOTES|ENT_HTML401|ENT_HTML401);
-}
-
-//Function to cleanup user input for xss
-function xss_cleaner($input_str) {
-    $return_str = str_replace( array('<','>',"'",'"',')','('), array('&lt;','&gt;','&apos;','&#x22;','&#x29;','&#x28;'), $input_str );
-    $return_str = str_ireplace( '%3Cscript', '', $return_str );
-    return $return_str;
-}
 
 if(isset($_POST["submit"]))
 {
@@ -48,9 +39,6 @@ if(isset($_POST["submit"]))
     //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
     if($userID >0) {
 
-        //connect to db
-        $mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
-        //if(!$mysqli) die('Could not connect$: ' . mysqli_error());
 
         //test connection
         if ($mysqli->connect_errno) {
@@ -61,7 +49,7 @@ if(isset($_POST["submit"]))
 
         //call procedure
         if (! $mysqli->query("CALL sp_insertComments('$desc','$photoID','$userID')"))  {
-            //echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+            echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
             // $msg = "Sorry, there was an error uploading your file.";
         }else{
 
