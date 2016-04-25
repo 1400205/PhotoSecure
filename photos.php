@@ -9,6 +9,7 @@ session_start();
 $login_user= $_SESSION["username"];
 
 ?>
+<?php
 if(!isset($_SESSION["timeout"])){
 $_SESSION['timeout'] = time();
 };
@@ -18,6 +19,7 @@ if(time() < $st){
 	echo 'Session will last 1 minute';
 }
 
+?>
 
 <!doctype html>
 <html>
