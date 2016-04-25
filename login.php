@@ -99,7 +99,7 @@ session_start();
 				// Function to get the client IP address
 
 
-				echo $_SESSION['HTTP_USER_AGENT'];
+				echo $_SERVER['HTTP_USER_AGENT'];
 				//echo $_SESSION['username'];
 				//header("location: photos.php"); // Redirecting To Other Page
 			}
