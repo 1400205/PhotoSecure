@@ -12,7 +12,7 @@ if($_SESSION ['timeout']+ 60 < time()){
 
 	//session timed out
 	session.session_destroy();
-	Header("Location:index.php");
+	//Header("Location:index.php");
 }else{
 	//reset session time
 	$_SESSION['timeout']=time();
