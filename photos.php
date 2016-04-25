@@ -8,17 +8,16 @@ session_start();
 	include("userphotos.php");
 $login_user= $_SESSION["username"];
 
-if($_SESSION ['timeout']+ 60 < time()){
+?>
+if(!isset($_SESSION["timeout"])){
+$_SESSION['timeout'] = time();
+};
+$st = $_SESSION['timeout'] + 60; //session time is 1 minute
 
-	//session timed out
-	session.session_destroy();
-	//Header("Location:index.php");
-}else{
-	//reset session time
-	$_SESSION['timeout']=time();
+if(time() < $st){
+	echo 'Session will last 1 minute';
 }
 
-?>
 
 <!doctype html>
 <html>
