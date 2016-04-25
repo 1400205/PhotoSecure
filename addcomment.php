@@ -1,8 +1,13 @@
 <?php
 session_start();
 include("connection.php"); //Establishing connection with our database
+include ("secureSessionID.php");//verify user session
+
 ?>
+
+
 <?php
+
 //get the session variables
 
 $name = $_SESSION["username"];
