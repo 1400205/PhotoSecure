@@ -11,8 +11,11 @@ if(isset($_POST["submit"]))
     $email = $_POST["email"];
     $password = $_POST["password"];
 
+//clean user input
     $name=mysqli_real_escape_string($db,$name);
     $email=mysqli_real_escape_string($db,$email);
+
+    //encrypt password
     $password=md5($password);
 
     $sql="SELECT email FROM userssecure WHERE email='$email'";

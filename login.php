@@ -16,8 +16,10 @@ session_start();
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 
-
+			//clean user input
 			$username=mysqli_real_escape_string($db,$username);
+
+			//enrypt password
 			$password=md5($password);
 
 			//Check username and password from database
