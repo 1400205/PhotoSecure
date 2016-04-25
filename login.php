@@ -4,7 +4,14 @@ session_start();
 ?>
 <?php
 	include("connection.php"); //Establishing connection with our database
-	
+
+	//Function to cleanup user input for xss
+	function xss_cleaner($input_str) {
+	$return_str = str_replace( array('<','>',"'",'"',')','('), array('&lt;','&gt;','&apos;','&#x22;','&#x29;','&#x28;'), $input_str );
+	$return_str = str_ireplace( '%3Cscript', '', $return_str );
+	return $return_str;
+}
+
 	$error = ""; //Variable for storing our errors.
 	if(isset($_POST["submit"]))
 	{
@@ -21,6 +28,9 @@ session_start();
 
 			//enrypt password
 			$password=md5($password);
+
+			//clean user input from xss
+			xss_cleaner($username );
 
 			//Check username and password from database
 			//$sql="SELECT userID FROM userssecure WHERE username='$username' and password='$password'";

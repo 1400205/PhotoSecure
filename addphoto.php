@@ -9,6 +9,14 @@ $userID=$_SESSION["userid"];
 include("connection.php"); //Establishing connection with our database
 
 $msg = ""; //Variable for storing our errors.
+
+//Function to cleanup user input for xss
+function xss_cleaner($input_str) {
+    $return_str = str_replace( array('<','>',"'",'"',')','('), array('&lt;','&gt;','&apos;','&#x22;','&#x29;','&#x28;'), $input_str );
+    $return_str = str_ireplace( '%3Cscript', '', $return_str );
+    return $return_str;
+}
+
 if(isset($_POST["submit"]))
 {
     $title = $_POST["title"];
@@ -18,6 +26,10 @@ if(isset($_POST["submit"]))
         //clean user input
     $title=mysqli_real_escape_string($db,$title);
     $desc=mysqli_real_escape_string($db,$desc);
+
+    //clean user inputs from xss
+    $desc= xss_cleaner($desc);
+    $title= xss_cleaner($title);
 
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
