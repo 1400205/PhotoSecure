@@ -37,7 +37,7 @@ if (isset($_SESSION['uid'])) {
 		// Then it destroys the session
 		session_unset();
 		session_destroy();
-		header("Location: logout.php");
+		//header("Location: logout.php");
 		// Creates a new one
 		session_regenerate_id(true); // Prevent's session fixation
 		//session_id(sha1(uniqid(microtime())); // Sets a random ID for the session
