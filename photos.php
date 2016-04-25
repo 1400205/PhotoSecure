@@ -17,6 +17,7 @@ $st = $_SESSION['timeout'] + 60; //session time is 1 minute
 
 if(time() < $st){
 	echo 'Session will last 1 minute';
+	echo $_SESSION['timeout'] = time();
 }
 
 ?>
