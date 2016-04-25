@@ -24,33 +24,6 @@ if($_SESSION ['timeout']+ 60 < time()){
 }
 ?>
 
-<?php
-
-// If the user is already logged
-if (isset($_SESSION['uid'])) {
-	// If the IP or the navigator doesn't match with the one stored in the session
-	// there's probably a session hijacking going on
-	//session IP binding
-	//$IP=$_SERVER['REMOTE_ADDR'];
-
-	if ( $_SESSION['user_agent_id'] !== $_SERVER['HTTP_USER_AGENT']) {
-		// Then it destroys the session
-		session_unset();
-		session_destroy();
-		//header("Location: logout.php");
-		// Creates a new one
-		session_regenerate_id(true); // Prevent's session fixation
-		//session_id(sha1(uniqid(microtime())); // Sets a random ID for the session
-	}
-} else {
-	session_regenerate_id(true); // Prevent's session fixation
-	//session_id(sha1(uniqid(microtime())); // Sets a random ID for the session
-	// Set the default values for the session
-	//setSessionDefaults();
-	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR']; // Saves the user's IP
-	$_SESSION['user_agent_id'] = $_SERVER['HTTP_USER_AGENT']; // Saves the user's navigator
-}
-?>
 
 
 <!doctype html>
