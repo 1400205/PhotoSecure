@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("connection.php"); //Establishing connection with our database
-
 ?>
 
 
@@ -11,7 +10,6 @@ include("connection.php"); //Establishing connection with our database
 
 $name = $_SESSION["username"];
 $userID=$_SESSION["userid"];
-
 ?>
 <?php
 $msg = ""; //Variable for storing our errors.
@@ -20,7 +18,6 @@ $msg = ""; //Variable for storing our errors.
 function xssafe($data,$encoding='UTF-8'){
     return htmlspecialchars($data,ENT_QUOTES|ENT_HTML401|ENT_HTML401);
 }
-
 
 //Function to cleanup user input for xss
 function xss_cleaner($input_str) {
@@ -37,14 +34,14 @@ if(isset($_POST["submit"]))
     $name = $_SESSION["username"];
 
     //clean user input
-    $dec=mysqli_real_escape_string($db,$desc);
-   $photoID=mysqli_real_escape_string($db,$photoID);
-   $name=mysqli_real_escape_string($db,$name);
+    $desc=mysqli_real_escape_string($db,$desc);
+   // $photoID=mysqli_real_escape_string($db,$photoID);
+   // $name=mysqli_real_escape_string($db,$name);
 
     //clean inputs for xss
-    $desc=xss_cleaner($desc);
-    $name=xss_cleaner($name);
-    $photoID=xss_cleaner($photoID);
+   // $desc=xssafe($desc);
+    //$name=xssafe($name);
+    //$photoID=xssafe($photoID);
 
    // $sql="SELECT userID FROM usersSecure WHERE username='$name'";
    // $result=mysqli_query($db,$sql);
