@@ -1,6 +1,6 @@
 <?php
-include ("secureSessionID.php");//verify user session
-include ("inactiveTimeOut.php");//check user idle time
+//include ("secureSessionID.php");//verify user session
+//include ("inactiveTimeOut.php");//check user idle time
 include("check.php");
 include("addcomment.php");
 ?>
