@@ -17,6 +17,9 @@ session_start();
 			$password = $_POST['password'];
 
 
+			$username=mysqli_real_escape_string($db,$username);
+			$password=md5($password);
+
 			//Check username and password from database
 			//$sql="SELECT userID FROM userssecure WHERE username='$username' and password='$password'";
 			//$result=mysqli_query($db,$sql);
