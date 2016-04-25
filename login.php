@@ -93,6 +93,13 @@ session_start();
 			{
 				$_SESSION['username'] = $username; // Initializing Session
 				$_SESSION["userid"] = $userid;//user id assigned to session global variable
+				//session IP binding
+				//$IP=$_SERVER['REMOTE_ADDR'];
+				// Function to get the client IP address
+
+
+				//echo $IP=getenv('HTTP_CLIENT_IP');
+				//echo $_SESSION['username'];
 				header("location: photos.php"); // Redirecting To Other Page
 			}
 
