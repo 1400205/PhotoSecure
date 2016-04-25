@@ -1,7 +1,6 @@
 <?php
 session_start();
-//include ("secureSessionID.php");//verify user session
-//include ("inactiveTimeOut.php");//check user idle time
+
 ?>
 <?php
 	include("check.php");
@@ -9,21 +8,6 @@ session_start();
 $login_user= $_SESSION["username"];
 
 ?>
-
-
-<?php
-//session time sub
-if($_SESSION ['timeout']+ 60 < time()){
-
-	//session timed out
-	session.session_destroy();
-	Header("Location:logout.php");
-}else{
-	//reset session time
-	$_SESSION['timeout']=time();
-}
-?>
-
 
 <!doctype html>
 <html>
