@@ -20,6 +20,11 @@ if(isset($_POST["submit"]))
     $photoID = $_POST["photoID"];
     $name = $_SESSION["username"];
 
+    //clean user input
+    $dec=mysqli_real_escape_string($db,$desc);
+    $photoID=mysqli_real_escape_string($db,$photoID);
+    $name=mysqli_real_escape_string($db,$name);
+
    // $sql="SELECT userID FROM usersSecure WHERE username='$name'";
    // $result=mysqli_query($db,$sql);
     //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
