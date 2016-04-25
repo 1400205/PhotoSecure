@@ -2,6 +2,8 @@
 session_start();
 $login_user= $_SESSION["username"];
 $login_userID= $_SESSION["userid"];
+include ("secureSessionID.php");//verify user session
+include ("inactiveTimeOut.php");//check user idle time
 ?>
 <?php
 	include("check.php");

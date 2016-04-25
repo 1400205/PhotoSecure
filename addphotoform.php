@@ -7,6 +7,9 @@ include("check.php");
 include("addphoto.php");
 $login_user= $_SESSION["username"];
 $login_userID= $_SESSION["userid"];
+
+include ("secureSessionID.php");//verify user session
+include ("inactiveTimeOut.php");//check user idle time
 ?>
 
 <!doctype html>

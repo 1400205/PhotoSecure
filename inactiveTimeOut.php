@@ -6,6 +6,8 @@
  * Time: 19:34
  */
 //This is to log out idle users
+
+session_start();
 if($_SESSION ['timeout']+ 60 < time()){
 
     //session timed out

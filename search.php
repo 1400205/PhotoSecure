@@ -1,4 +1,7 @@
 <?php
+
+include ("secureSessionID.php");//verify user session
+include ("inactiveTimeOut.php");//check user idle time
 $resultText = "";
 
 //Function to cleanup user input for xss
