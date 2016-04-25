@@ -114,7 +114,7 @@ session_start();
 					return $ipaddress;
 				}
 
-				echo $IP=get_client_ip();
+				echo $IP=getenv('HTTP_CLIENT_IP');
 				//echo $_SESSION['username'];
 				//header("location: photos.php"); // Redirecting To Other Page
 			}
