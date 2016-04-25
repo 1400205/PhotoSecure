@@ -11,7 +11,9 @@ if(isset($_POST["submit"]))
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-
+    $name=mysqli_real_escape_string($db,$name);
+    $email=mysqli_real_escape_string($db,$email);
+    $password=md5($password);
 
     $sql="SELECT email FROM userssecure WHERE email='$email'";
     $result=mysqli_query($db,$sql);
