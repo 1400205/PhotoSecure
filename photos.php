@@ -33,7 +33,7 @@ if (isset($_SESSION['uid'])) {
 	//session IP binding
 	//$IP=$_SERVER['REMOTE_ADDR'];
 
-	if ($_SESSION['ip'] !==$_SERVER['REMOTE_ADDR'] || $_SESSION['user_agent_id'] !== $_SERVER['HTTP_USER_AGENT']) {
+	if ( $_SESSION['user_agent_id'] !== $_SERVER['HTTP_USER_AGENT']) {
 		// Then it destroys the session
 		session_unset();
 		session_destroy();
