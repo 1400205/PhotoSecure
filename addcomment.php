@@ -40,9 +40,9 @@ if(isset($_POST["submit"]))
     $name=mysqli_real_escape_string($db,$name);
 
     //clean inputs for xss
-    $desc=xssafe($desc);
-    $name=xssafe($name);
-    $photoID=xssafe($photoID);
+   // $desc=xssafe($desc);
+    //$name=xssafe($name);
+    //$photoID=xssafe($photoID);
 
    // $sql="SELECT userID FROM usersSecure WHERE username='$name'";
    // $result=mysqli_query($db,$sql);
