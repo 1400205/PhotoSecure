@@ -11,6 +11,9 @@ session_start();
 	$return_str = str_ireplace( '%3Cscript', '', $return_str );
 	return $return_str;
 }
+	//session IP binding
+	//$IP=getenv("REOMOTE_ADDR");
+
 
 	$error = ""; //Variable for storing our errors.
 	if(isset($_POST["submit"]))
@@ -89,7 +92,11 @@ session_start();
 			{
 				$_SESSION['username'] = $username; // Initializing Session
 				$_SESSION["userid"] = $userid;//user id assigned to session global variable
-				header("location: photos.php"); // Redirecting To Other Page
+				//session IP binding
+				$IP=getenv("REOMOTE_ADDR");
+				echo $IP;
+				echo $_SESSION['username'];
+				//header("location: photos.php"); // Redirecting To Other Page
 			}
 
 
