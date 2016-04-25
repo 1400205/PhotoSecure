@@ -8,6 +8,16 @@ session_start();
 	include("userphotos.php");
 $login_user= $_SESSION["username"];
 
+if($_SESSION ['timeout']+ 60 < time()){
+
+	//session timed out
+	session.session_destroy();
+	Header("Location:index.php");
+}else{
+	//reset session time
+	$_SESSION['timeout']=time();
+}
+
 ?>
 
 <!doctype html>
