@@ -1,7 +1,7 @@
 <?php
 session_start();
 //include ("secureSessionID.php");//verify user session
-include ("inactiveTimeOut.php");//check user idle time
+//include ("inactiveTimeOut.php");//check user idle time
 ?>
 <?php
 $name = $_SESSION["username"];
