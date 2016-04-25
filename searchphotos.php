@@ -1,8 +1,8 @@
 <?php
 	include("check.php");
 	include("search.php");
-include ("secureSessionID.php");//verify user session
-include ("inactiveTimeOut.php");//check user idle time
+//include ("secureSessionID.php");//verify user session
+//include ("inactiveTimeOut.php");//check user idle time
 ?>
 
 <!doctype html>
