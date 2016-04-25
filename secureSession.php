@@ -34,11 +34,11 @@ if (isset($_SESSION['uid'])) {
     //session IP binding
     $IP=$_SERVER['REMOTE_ADDR'];
 
-    if ($_SESSION['ip'] !==$IP || $_SESSION['user_agent_id'] !== getUserAgentId()) {
+    if ($_SESSION['ip'] !==$IP || $_SESSION['user_agent_id'] !== $_SERVER['HTTP_USER_AGENT']) {
         // Then it destroys the session
         session_unset();
         session_destroy();
-
+        header("Location: index.php");
         // Creates a new one
         session_regenerate_id(true); // Prevent's session fixation
         //session_id(sha1(uniqid(microtime())); // Sets a random ID for the session
@@ -48,7 +48,7 @@ if (isset($_SESSION['uid'])) {
    //session_id(sha1(uniqid(microtime())); // Sets a random ID for the session
     // Set the default values for the session
     setSessionDefaults();
-    $_SESSION['ip'] = getIp(); // Saves the user's IP
-    $_SESSION['user_agent_id'] = getUserAgentId(); // Saves the user's navigator
+    $_SESSION['ip'] = $IP; // Saves the user's IP
+    $_SESSION['user_agent_id'] = $_SERVER['HTTP_USER_AGENT']; // Saves the user's navigator
 }
 ?>
