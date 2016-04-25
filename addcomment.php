@@ -25,6 +25,10 @@ if(isset($_POST["submit"]))
     $photoID=mysqli_real_escape_string($db,$photoID);
     $name=mysqli_real_escape_string($db,$name);
 
+    //function for xssafe
+   function xssafe($data,$encoding='UTF-8'){
+    return htmlspecialchars($data,ENT_QUOTES|ENT_HTML401|ENT_HTML5,$encoding);}
+
    // $sql="SELECT userID FROM usersSecure WHERE username='$name'";
    // $result=mysqli_query($db,$sql);
     //$row=mysqli_fetch_array($result,MYSQLI_ASSOC);
