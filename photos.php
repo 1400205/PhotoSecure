@@ -11,20 +11,6 @@ $login_user= $_SESSION["username"];
 ?>
 
 
-<?php
-//session time sub
-if($_SESSION ['timeout']+ 60 < time()){
-
-	//session timed out
-	session.session_destroy();
-	Header("Location:logout.php");
-}else{
-	//reset session time
-	$_SESSION['timeout']=time();
-}
-?>
-
-
 
 <!doctype html>
 <html>
