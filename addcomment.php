@@ -35,9 +35,9 @@ if(isset($_POST["submit"]))
     $name = $_SESSION["username"];
 
     //clean user input
-    $dec=mysqli_real_escape_string($db,$desc);
-    $photoID=mysqli_real_escape_string($db,$photoID);
-    $name=mysqli_real_escape_string($db,$name);
+    //$dec=mysqli_real_escape_string($db,$desc);
+   // $photoID=mysqli_real_escape_string($db,$photoID);
+   // $name=mysqli_real_escape_string($db,$name);
 
     //clean inputs for xss
    // $desc=xssafe($desc);
