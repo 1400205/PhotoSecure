@@ -35,10 +35,12 @@ $login_userID= $_SESSION["userid"];
 
             //bind and execute
 
-            $photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID= :photoid");
-            $photoSql->bindparam(':photoid',$photoID );
+            $photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID= :pid");
+            $photoSql->bindparam(':pid',$photoID );
             $photoSql->execute();
-            $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC);
+           if(! $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC)){
+               echo "binding does not work";
+           }
 
             //prevent system errors from been seen by user
            // $photoresult=mysqli_query($db,$photoSql) or die("application cannot connect;check network");
