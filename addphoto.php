@@ -36,7 +36,7 @@ if(isset($_POST["submit"]))
 
 
 
-    if( isset( $_POST[ 'Upload' ] ) ) {
+    if( isset( $_POST[ 'fileToUpload' ] ) ) {
 
         // Where are we going to be writing to?
         $target_dir = "uploads/";
