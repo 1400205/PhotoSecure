@@ -35,22 +35,30 @@ $login_userID= $_SESSION["userid"];
 
             //bind and execute
 
-            $photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID= :pid");
-            $photoSql->bindparam(':pid',$photoID );
+           // $photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID= :pid");
+           // $photoSql->bindparam(':pid',$photoID );
+           // $photoSql->execute();
+           // $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC);
+
+            $photoID = $_GET['id'];
+
+            $photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID=:pid");
+            $photoSql->bindParam(':pid', $photoID);
             $photoSql->execute();
-           if(! $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC)){
-               echo "binding does not work";
-           }
+
+            $result = $photoSql -> fetch();
+
+            //print_r($result);
 
             //prevent system errors from been seen by user
            // $photoresult=mysqli_query($db,$photoSql) or die("application cannot connect;check network");
 
-            if(mysqli_num_rows($photoresult)==1){
+            if($result){
                 $photoRow = mysqli_fetch_assoc($photoresult);
-                echo "<p>".$photoRow['title']."</p>";
-                echo "<h3>".$photoRow['postDate']."</h3>";
-                echo "<img src='".$photoRow['url']."'/>";
-                echo " <p>".$photoRow['description']."</p>";
+                echo "<p>".$result['title']."</p>";
+                echo "<h3>".$result['postDate']."</h3>";
+                echo "<img src='".$result['url']."'/>";
+                echo " <p>".$result['description']."</p>";
 
 
                 $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";

@@ -42,7 +42,7 @@ if(isset($_POST["submit"]))
 
         // Where are we going to be writing to?
         $target_dir = "uploads/";
-        $target_file .= basename($_FILES['fileToUpload']['name']);
+        $target_file = basename($_FILES['fileToUpload']['name']);
 
         // File information
         $uploaded_name = $_FILES['fileToUpload']['name'];
