@@ -25,23 +25,14 @@ if(isset($_POST["submit"]))
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		//clean user input
+		//clean input user name
+		$username = stripslashes( $username );
 		$username=mysqli_real_escape_string($db,$username);
+		$username = htmlspecialchars( $username );
+		$username=xssafe($username);
 
 		//enrypt password
 		$password=md5($password);
-
-		//clean user input from xss
-		xss_cleaner($username );
-
-		//Check username and password from database
-		//$sql="SELECT userID FROM userssecure WHERE username='$username' and password='$password'";
-		//$result=mysqli_query($db,$sql);
-		//$row=mysqli_fetch_array($result,MYSQLI_ASSOC) ;
-		//$userid=$row['userID'];//Get user ID
-
-		//If username and password exist in our database then create a session.
-		//Otherwise echo error.
 
 		//instance of connection to dbase
 		$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
@@ -64,11 +55,7 @@ if(isset($_POST["submit"]))
 			echo "Stored procedure creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
 		}
 
-		// Define $username and $password
-		//$username=$_POST['username'];
-		//$password=$_POST['password'];
-
-		// Prepare OUT parameters
+				// Prepare OUT parameters
 		$mysqli->query("SET @userID=0");
 
 		if (!$mysqli->query("CALL getUserID('$username','$password',@userID)")) {
@@ -91,13 +78,7 @@ if(isset($_POST["submit"]))
 	{
 		$_SESSION['username'] = $username; // Initializing Session
 		$_SESSION["userid"] = $userid;//user id assigned to session global variable
-		//session IP binding
-		//$IP=$_SERVER['REMOTE_ADDR'];
-		// Function to get the client IP address
 
-
-		//echo $IP=getenv('HTTP_CLIENT_IP');
-		//echo $_SESSION['username'];
 		header("location: photos.php"); // Redirecting To Other Page
 	}
 
