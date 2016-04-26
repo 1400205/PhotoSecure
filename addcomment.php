@@ -26,13 +26,13 @@ if(isset($_POST["submit"]))
 
     //clean user input
     $desc=mysqli_real_escape_string($db,$desc);
-   // $photoID=mysqli_real_escape_string($db,$photoID);
-   // $name=mysqli_real_escape_string($db,$name);
+    $photoID=mysqli_real_escape_string($db,$photoID);
+   $name=mysqli_real_escape_string($db,$name);
 
     //clean inputs for xss
-   // $desc=xssafe($desc);
-    //$name=xssafe($name);
-    //$photoID=xssafe($photoID);
+    $desc=xssafe($desc);
+    $name=xssafe($name);
+    $photoID=xssafe($photoID);
 
    // $sql="SELECT userID FROM usersSecure WHERE username='$name'";
    // $result=mysqli_query($db,$sql);

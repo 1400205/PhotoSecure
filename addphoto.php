@@ -27,11 +27,11 @@ if(isset($_POST["submit"]))
 
         //clean user input
     $title=mysqli_real_escape_string($db,$title);
-    $desc=mysqli_real_escape_string($db,$desc);
+   $desc=mysqli_real_escape_string($db,$desc);
 
     //clean user inputs from xss
-    $desc= xss_cleaner($desc);
-    $title= xss_cleaner($title);
+   $desc= xss_cleaner($desc);
+   $title= xss_cleaner($title);
 
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
