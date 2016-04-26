@@ -26,9 +26,9 @@ $login_userID= $_SESSION["userid"];
             $photoID = $_GET['id'];
 
             //clean input user name
-            $photoID = stripslashes( $photoID );
-            $photoID=mysqli_real_escape_string($db,$photoID);
-            $photoID = htmlspecialchars( $photoID );
+           // $photoID = stripslashes( $photoID );
+            //$photoID=mysqli_real_escape_string($db,$photoID);
+            //$photoID = htmlspecialchars( $photoID );
 
             //instance of connection to dbase
             $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
@@ -36,7 +36,7 @@ $login_userID= $_SESSION["userid"];
             //bind and execute
 
            $photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID= :pid");
-           $photoSql->bindparam(':pid',$photoID );
+           $photoSql->bindparam(':pid',311 );
            $photoSql->execute();
            $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC);
 
