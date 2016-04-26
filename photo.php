@@ -22,16 +22,27 @@ $login_userID= $_SESSION["userid"];
 <div id="photo">
     <?php
         if(isset($_GET['id'])){
-
+             $photoID=1;
             $photoID = $_GET['id'];
 
-            //filter Get input
+            //clean input user name
+            $photoID = stripslashes( $photoID );
             $photoID=mysqli_real_escape_string($db,$photoID);
+            $photoID = htmlspecialchars( $photoID );
 
-            $photoSql="SELECT * FROM photosSecure WHERE photoID='$photoID'";
+            //instance of connection to dbase
+            $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+            //bind and execute
+
+            $photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID= :photoid");
+            $photoSql->bindparam(':photoid',$photoID );
+            $photoSql->execute();
+            $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC);
 
             //prevent system errors from been seen by user
-            $photoresult=mysqli_query($db,$photoSql) or die("application cannot connect;check network");
+           // $photoresult=mysqli_query($db,$photoSql) or die("application cannot connect;check network");
+
             if(mysqli_num_rows($photoresult)==1){
                 $photoRow = mysqli_fetch_assoc($photoresult);
                 echo "<p>".$photoRow['title']."</p>";
