@@ -33,8 +33,30 @@ if(isset($_POST["submit"]))
    $desc= xss_cleaner($desc);
    $title= xss_cleaner($title);
 
+
+
+
+
+    // Where are we going to be writing to?
+    $target_dir  = "uploads/";
+    $target_file .= basename( $_FILES[ 'uploaded' ][ 'name' ] );
+
+    // File information
+    $uploaded_name = $_FILES[ 'uploaded' ][ 'name' ];
+    $uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, '.' ) + 1);
+    $uploaded_size = $_FILES[ 'uploaded' ][ 'size' ];
+    $uploaded_tmp  = $_FILES[ 'uploaded' ][ 'tmp_name' ];
+
+
+
+
+    // Where are we going to be writing to?
+
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+
+
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
     $uploadOk = 1;
 
@@ -45,44 +67,39 @@ if(isset($_POST["submit"]))
     if($userID) {
         //$timestamp = time();
         //$target_file = $target_file.$timestamp;
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            //$id = $row['userID'];
+        // Is it an image?
+        if( ( strtolower( $uploaded_ext ) == "jpg" || strtolower( $uploaded_ext ) == "jpeg" || strtolower( $uploaded_ext ) == "png" ) &&
+            ( $uploaded_size < 100000 ) &&
+            getimagesize( $uploaded_tmp ) ) {
 
-           //connect to db
-            $mysqli = new mysqli(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
-            //if(!$mysqli) die('Could not connect$: ' . mysqli_error());
+            // Can we move the file to the upload folder?
+            if (move_uploaded_file($uploaded_tmp, $target_file)) {
+                // No
+                //connect to db
+                $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+                //if(!$mysqli) die('Could not connect$: ' . mysqli_error());
 
-            //test connection
-            if ($mysqli->connect_errno) {
-                echo "Connection Fail:Check network connection";//: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+                //test connection
+                if ($mysqli->connect_errno) {
+                    echo "Connection Fail:Check network connection";//: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+                }
+
+                //call procedure
+                if (!$mysqli->query("CALL sp_insertphotos('$title','$desc','$target_file','$userID')")) {
+
+                } else {
+
+                    $msg = "Thank You! The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded. click <a href='photos.php'>here</a> to go back";
+
+                }
             }
-
-
-            //create procedure
-
-            //if (!$mysqli->query("DROP PROCEDURE IF EXISTS insertPhoto") ||
-               // !$mysqli->query('CREATE PROCEDURE insertPhoto(IN strtitle varchar(255),IN strDesc varchar(255),
-               // IN datpostDate(DateTime),IN strurl text(500), IN intuserID int(11))
-			   // BEGIN
-			    //    INSERT INTO photosecure
-               // ( title,description,postDate,url,userID )
-               // VALUES (strtitle, strDesc,datpostDate,strurl, intuserID);END;')) {
-               // echo "Stored procedure creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
-           // }
-
-            //call procedure
-            if (! $mysqli->query("CALL sp_insertphotos('$title','$desc','$target_file','$userID')"))  {
-                //echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
-               // $msg = "Sorry, there was an error uploading your file.";
-            }else{
-
-                $msg = "Thank You! The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded. click <a href='photos.php'>here</a> to go back";
-
+            else{
+                $msg = "Your image was not uploaded";
             }
-
-
-
+        }else{
+            $msg = "Your image was not uploaded. We can only accept JPEG or PNG images.";
         }
+
         //echo $name." ".$email." ".$password;
 
 
