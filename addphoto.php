@@ -21,19 +21,21 @@ function xss_cleaner($input_str) {
 
 if(isset($_POST["submit"]))
 {
+
     $title = $_POST["title"];
     $desc = $_POST["desc"];
     $url = "test";
-
-        //clean user input
+    //clean input title
+    $title = stripslashes( $title );
     $title=mysqli_real_escape_string($db,$title);
-   $desc=mysqli_real_escape_string($db,$desc);
+    $title = htmlspecialchars( $title );
+    $title=xssafe($title);
 
-    //clean user inputs from xss
-   $desc= xss_cleaner($desc);
-   $title= xss_cleaner($title);
-
-
+    //clean input description
+    $desc = stripslashes( $desc );
+    $desc=mysqli_real_escape_string($db,$desc);
+    $desc = htmlspecialchars( $desc );
+    $desc=xssafe($desc);
 
     //check for file upload error
     if($_FILES['fileToUpload']['error'] == 0) {
