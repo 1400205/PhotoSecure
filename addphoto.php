@@ -36,17 +36,17 @@ if(isset($_POST["submit"]))
 
 
 
-    if( isset( $_POST[ 'fileToUpload' ] ) ) {
+    if($_FILES['fileToUpload']['error'] == 0) {
 
         // Where are we going to be writing to?
         $target_dir = "uploads/";
-        $target_file .= basename($_FILES['uploaded']['name']);
+        $target_file .= basename($_FILES['fileToUpload']['name']);
 
         // File information
-        $uploaded_name = $_FILES['uploaded']['name'];
+        $uploaded_name = $_FILES['fileToUpload']['name'];
         $uploaded_ext = substr($uploaded_name, strrpos($uploaded_name, '.') + 1);
-        $uploaded_size = $_FILES['uploaded']['size'];
-        $uploaded_tmp = $_FILES['uploaded']['tmp_name'];
+        $uploaded_size = $_FILES['fileToUpload']['size'];
+        $uploaded_tmp = $_FILES['fileToUpload']['tmp_name'];
 
 
         // Where are we going to be writing to?
