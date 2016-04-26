@@ -36,30 +36,28 @@ if(isset($_POST["submit"]))
 
 
 
+    if( isset( $_POST[ 'Upload' ] ) ) {
 
-    // Where are we going to be writing to?
-    $target_dir  = "uploads/";
-    $target_file .= basename( $_FILES[ 'uploaded' ][ 'name' ] );
+        // Where are we going to be writing to?
+        $target_dir = "uploads/";
+        $target_file .= basename($_FILES['uploaded']['name']);
 
-    // File information
-    $uploaded_name = $_FILES[ 'uploaded' ][ 'name' ];
-    $uploaded_ext  = substr( $uploaded_name, strrpos( $uploaded_name, '.' ) + 1);
-    $uploaded_size = $_FILES[ 'uploaded' ][ 'size' ];
-    $uploaded_tmp  = $_FILES[ 'uploaded' ][ 'tmp_name' ];
-
-
-
-
-    // Where are we going to be writing to?
-
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        // File information
+        $uploaded_name = $_FILES['uploaded']['name'];
+        $uploaded_ext = substr($uploaded_name, strrpos($uploaded_name, '.') + 1);
+        $uploaded_size = $_FILES['uploaded']['size'];
+        $uploaded_tmp = $_FILES['uploaded']['tmp_name'];
 
 
+        // Where are we going to be writing to?
 
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    $uploadOk = 1;
+        // $target_dir = "uploads/";
+        // $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
+
+        // $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        $uploadOk = 1;
+    }
     //$sql="SELECT userID FROM usersSecure WHERE username='$name'";
    // $result=mysqli_query($db,$sql);
    // $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
