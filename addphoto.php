@@ -69,7 +69,7 @@ if(isset($_POST["submit"]))
         //$target_file = $target_file.$timestamp;
         // Is it an image?
         if( ( strtolower( $uploaded_ext ) == "jpg" || strtolower( $uploaded_ext ) == "jpeg" || strtolower( $uploaded_ext ) == "png" ) &&
-            ( $uploaded_size < 100000 ) &&
+            ( $uploaded_size < 500000 ) &&
             getimagesize( $uploaded_tmp ) ) {
 
             // Can we move the file to the upload folder?
