@@ -47,32 +47,18 @@ if(isset($_POST["submit"]))
         $uploaded_ext = substr($uploaded_name, strrpos($uploaded_name, '.') + 1);
         $uploaded_size = $_FILES['fileToUpload']['size'];
         $uploaded_tmp = $_FILES['fileToUpload']['tmp_name'];
-
-
-        // Where are we going to be writing to?
-
-        // $target_dir = "uploads/";
-        // $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-
-
-        // $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         $uploadOk = 1;
     }
-    //$sql="SELECT userID FROM usersSecure WHERE username='$name'";
-   // $result=mysqli_query($db,$sql);
-   // $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-    // if(mysqli_num_rows($result) == 1)
-    if($userID) {
-        //$timestamp = time();
-        //$target_file = $target_file.$timestamp;
-        // Is it an image?
+
+    if($userID >0) {
+
+        //restrict file type and size
         if( ( strtolower( $uploaded_ext ) == "jpg" || strtolower( $uploaded_ext ) == "jpeg" || strtolower( $uploaded_ext ) == "png" ) &&
             ( $uploaded_size < 100000 ) &&
             getimagesize( $uploaded_tmp ) ) {
 
             // Can we move the file to the upload folder?
             if (move_uploaded_file($uploaded_tmp, $target_file)) {
-                // No
                 //connect to db
                 $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
                 //if(!$mysqli) die('Could not connect$: ' . mysqli_error());
@@ -95,11 +81,8 @@ if(isset($_POST["submit"]))
                 $msg = "Your image was not uploaded";
             }
         }else{
-            $msg = "Your image was not uploaded. We can only accept JPEG or PNG images."." ". basename($_FILES["fileToUpload"]["name"]);
+            $msg = "Your image was not uploaded. We can only accept JPEG or PNG images.";
         }
-
-        //echo $name." ".$email." ".$password;
-
 
     }
     else{
