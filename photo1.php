@@ -31,14 +31,27 @@ include("connection.php");
         //$photoID = htmlspecialchars( $photoID );
 
         //instance of connection to dbase
-        $pdo = new PDO(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        $sqlidb = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        if ($sqlidb->connect_errno){
+            echo"connection Failed";
+        }
+    //sql statement
 
-        //bind and execute
+        $photosql='SELECT * FROM photosSecure WHERE photoID=?';
 
-        $photoSql=$pdo->prepare("SELECT * FROM photosSecure WHERE photoID=?");
-        $photoSql->bindparam(1,$photoID );
-        if( $photoSql->execute()){
-            $row=$photoSql->fetchAll(PDO::FETCH_BOTH);
+        //inititalilised the statement
+        $stm=$sqlidb->init();
+
+        //prepare statement
+       if(!($stm->prepare($photosql))){
+        echo "prepared statement failed";
+       }
+        else{
+            //bind parameter
+            $stm->bind_param('i',$_GET['id']);
+            $stm->execute();
+            $result=$stm->get_result();
+            $row=$result->fetch_assoc();
 
             // $photoRow = mysqli_fetch_assoc($photoresult);
             echo "<p>".$row['title']."</p>";
