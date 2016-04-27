@@ -21,9 +21,9 @@ $timeout=$_SESSION ["timeout"];
     <?php
     if(isset($_GET['id']))
     {
-        if (!($ip==$_SERVER['REMOTE_ADDR'])){
-            header("location: logout.php"); // Redirecting To Other Page
-        }
+       // if (!($ip==$_SERVER['REMOTE_ADDR'])){
+          //  header("location: logout.php"); // Redirecting To Other Page
+      //  }
 
         if($timeout < time()){
 
