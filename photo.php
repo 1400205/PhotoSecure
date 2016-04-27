@@ -40,8 +40,9 @@ $timeout=$_SESSION ["timeout"];
             session_unset();     // unset $_SESSION variable for the run-time
             session_destroy();   // destroy session data in storage
             header("location: logout.php");
-
         }
+
+
         $photoID = $_GET['id'];
 
         //clean input user name
