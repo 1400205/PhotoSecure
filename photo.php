@@ -1,11 +1,13 @@
 <?php
-session_start()
+session_start();
+$login_user= $_SESSION["username"];
+$login_userID= $_SESSION["userid"];
+//include ("secureSessionID.php");//verify user session
+//include ("inactiveTimeOut.php");//check user idle time
 ?>
 <?php
 include("check.php");
 include("connection.php");
-$ip=$_SESSION["ip"];
-$timeout=$_SESSION ["timeout"];
 ?>
 <!doctype html>
 <html>
@@ -16,42 +18,37 @@ $timeout=$_SESSION ["timeout"];
 </head>
 
 <body>
-<h4>Welcome <?php echo $login_user;?> <a href="photos.php" style="font-size:18px">Photos</a>||<a href="searchphotos.php" style="font-size:18px">Search</a>||<a href="logout.php" style="font-size:18px">Logout</a></h4>
+<h4>Welcome <?php echo $login_user;?>  <a href="photos.php" style="font-size:18px">Photos</a>||<a href="searchphotos.php" style="font-size:18px">Search</a>||<a href="logout.php" style="font-size:18px">Logout</a></h4>
 <div id="photo">
     <?php
-    if(isset($_GET['id']))
-    {
-       // if (!($ip==$_SERVER['REMOTE_ADDR'])){
-          //  header("location: logout.php"); // Redirecting To Other Page
-      //  }
+    if(isset($_GET['id'])){
 
-        if($timeout < time()){
-
-            //session timed out
-            header("location: logout.php"); // Redirecting To Other Page
-        }else{
-            //reset session time
-            $_SESSION['timeout']=time();
-        }
-        $photoID = $_GET['id'];
+        $photoID = 311;
 
         //clean input user name
-         $photoID = stripslashes( $photoID );
-        $photoID=mysqli_real_escape_string($db,$photoID);
-        $photoID = htmlspecialchars( $photoID );
+        // $photoID = stripslashes( $photoID );
+        //$photoID=mysqli_real_escape_string($db,$photoID);
+        //$photoID = htmlspecialchars( $photoID );
 
-        $photoSql="SELECT * FROM photosSecure WHERE photoID='$photoID'";
-        $photoresult=mysqli_query($db,$photoSql) or die(mysqli_error($db));
-        if(mysqli_num_rows($photoresult)==1){
-            $photoRow = mysqli_fetch_assoc($photoresult);
-            echo "<h1>".$photoRow['title']."</h1>";
-            echo "<h3>".$photoRow['postDate']."</h3>";
-            echo "<img src='".$photoRow['url']."'/>";
-            echo " <p>".$photoRow['description']."</p>";
+        //instance of connection to dbase
+        $pdo = new PDO(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+        //bind and execute
+
+        $photoSql=$pdo->prepare("SELECT * FROM photosSecure WHERE photoID=?");
+        $photoSql->bindValue(1,$photoID );
+        if( $photoSql->execute()){
+            $row=$photoSql->fetchAll(PDO::FETCH_ASSOC);
+
+            // $photoRow = mysqli_fetch_assoc($photoresult);
+            echo "<p>".$row['title']."</p>";
+            echo "<h3>".$row['postDate']."</h3>";
+            echo "<img src='".$row['url']."'/>";
+            echo " <p>".$row['description']."</p>";
 
 
             $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
-            $commentresult=mysqli_query($db,$commentSql) or die(mysqli_error($db));
+            $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
             if(mysqli_num_rows($commentresult)>1) {
 
                 echo "<h2> Comments </h2>";
@@ -68,11 +65,53 @@ $timeout=$_SESSION ["timeout"];
             if($adminuser){
                 echo "<div class='error'><a href='removephoto.php?id=".$photoID."'> Delete Photo</a></div>";
             }
+        }
+        // $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC);
 
-        }
-        else{
-            echo "<h1>No Photos Found</h1>";
-        }
+        //$photoID = $_GET['id'];
+
+        //$photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID=:pid");
+        //$photoSql->bindParam(':pid', $photoID);
+        // $photoSql->execute();
+
+        // $result = $photoSql -> fetch();
+
+        //print_r($result);
+
+        //prevent system errors from been seen by user
+        // $photoresult=mysqli_query($db,$photoSql) or die("application cannot connect;check network");
+
+        // if($photoresult){
+        // $photoRow = mysqli_fetch_assoc($photoresult);
+        // echo "<p>".$photoresult['title']."</p>";
+        // echo "<h3>".$photoresult['postDate']."</h3>";
+        //  echo "<img src='".$photoresult['url']."'/>";
+        //  echo " <p>".$photoresult['description']."</p>";
+
+
+        // $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
+        // $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
+        // if(mysqli_num_rows($commentresult)>1) {
+
+        // echo "<h2> Comments </h2>";
+        //  while($commentRow = mysqli_fetch_assoc($commentresult)){
+        //      echo "<div class = 'comments'>";
+        //      echo "<h3>".$commentRow['postDate']."</h3>";
+        //       echo "<p>".$commentRow['description']."</p>";
+        //        echo "</div>";
+        //     }
+
+        // }
+        // echo "<a href='addcommentform.php?id=".$photoID."'> Add Comment</a><br>";
+
+        // if($adminuser){
+        //     echo "<div class='error'><a href='removephoto.php?id=".$photoID."'> Delete Photo</a></div>";
+        //  }
+
+        // }
+        // else{
+        //    echo "<h1>No Photos Found</h1>";
+        // }
 
     }
     else{
