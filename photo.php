@@ -25,7 +25,7 @@ $timeout=$_SESSION ["timeout"];
         //  header("location: logout.php"); // Redirecting To Other Page
         //  }
 
-        if($timeout < time()){
+        if($timeout+60 < time()){
 
             //session timed out
             header("location: logout.php"); // Redirecting To Other Page
