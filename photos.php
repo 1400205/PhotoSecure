@@ -8,7 +8,7 @@ session_start();
 $login_user= $_SESSION["username"];
 $ip=$_SESSION["ip"];
 
-if ($ip==get_client_ip){
+if ($ip=='1.1.1.1'){
 	header("location: logout.php"); // Redirecting To Other Page
 }
 
