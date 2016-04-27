@@ -20,7 +20,7 @@ $ip=$_SESSION["ip"];
     <?php
     if(isset($_GET['id']))
     {
-        if (!($ip==$_SERVER['REMOTE_ADDR'])){
+        if (!($ip==get_client_ip())){
             header("location: logout.php"); // Redirecting To Other Page
         }
 
