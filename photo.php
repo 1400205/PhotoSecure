@@ -21,11 +21,11 @@ $timeout=$_SESSION ["timeout"];
     <?php
     if(isset($_GET['id']))
     {
-        // if (!($ip==$_SERVER['REMOTE_ADDR'])){
-        //  header("location: logout.php"); // Redirecting To Other Page
-        //  }
+        if (!($ip==$_SERVER['REMOTE_ADDR'])){
+         header("location: logout.php"); // Redirecting To Other Page
+         }
 
-       /** if($timeout+60 < time()){
+       if($_SESSION ["timeout"]+60 < time()){
 
             //session timed out
             header("location: logout.php"); // Redirecting To Other Page
@@ -33,14 +33,8 @@ $timeout=$_SESSION ["timeout"];
             //reset session time
             $_SESSION['timeout']=time();
         }
-        **/
 
-        if (isset($_SESSION['timeout']) && (time() - $_SESSION['timeout'] > 60)) {
-            // last request was more than 30 minutes ago
-            session_unset();     // unset $_SESSION variable for the run-time
-            session_destroy();   // destroy session data in storage
-            header("location: logout.php");
-        }
+
 
 
         $photoID = $_GET['id'];

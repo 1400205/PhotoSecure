@@ -3,6 +3,7 @@ session_start();
 
 ?>
 <?php
+session_start();
 include("check.php");
 include("addphoto.php");
 $login_user= $_SESSION["username"];
@@ -10,6 +11,21 @@ $login_userID= $_SESSION["userid"];
 
 //include ("secureSessionID.php");//verify user session
 //include ("inactiveTimeOut.php");//check user idle time
+
+//check session highjacking
+if (!($ip==$_SERVER['REMOTE_ADDR'])){
+    header("location: logout.php"); // Redirecting To Other Page
+}
+
+//check logut/idle time
+if($_SESSION ["timeout"]+60 < time()){
+
+    //session timed out
+    header("location: logout.php"); // Redirecting To Other Page
+}else{
+    //reset session time
+    $_SESSION['timeout']=time();
+}
 ?>
 
 <!doctype html>

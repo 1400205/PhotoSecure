@@ -12,7 +12,20 @@ $ip=$_SESSION["ip"];
 include("connection.php"); //Establishing connection with our database
 
 
+//check session highjacking
+if (!($ip==$_SERVER['REMOTE_ADDR'])){
+    header("location: logout.php"); // Redirecting To Other Page
+}
 
+//check logut/idle time
+if($_SESSION ["timeout"]+60 < time()){
+
+    //session timed out
+    header("location: logout.php"); // Redirecting To Other Page
+}else{
+    //reset session time
+    $_SESSION['timeout']=time();
+}
 $msg = ""; //Variable for storing our errors.
 
 
