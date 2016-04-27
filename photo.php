@@ -19,7 +19,7 @@ include("connection.php");
     <?php
     if(isset($_GET['id']))
     {
-        if (!($ip=='1.1.1.1')){
+        if (!($ip==get_client_ip())){
             header("location: logout.php"); // Redirecting To Other Page
         }
 
