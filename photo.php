@@ -23,7 +23,7 @@ $login_userID= $_SESSION["userid"];
     <?php
         if(isset($_GET['id'])){
 
-            $photoID = $_GET['id'];
+            $photoID = 311;
 
             //clean input user name
            // $photoID = stripslashes( $photoID );
