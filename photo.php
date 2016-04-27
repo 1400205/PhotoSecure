@@ -23,7 +23,7 @@ include("connection.php");
     <?php
     if(isset($_GET['id'])){
 
-        $photoID = 311;
+        $photoID = $_GET['id'];
 
         //clean input user name
         // $photoID = stripslashes( $photoID );
