@@ -31,14 +31,42 @@ $login_userID= $_SESSION["userid"];
             //$photoID = htmlspecialchars( $photoID );
 
             //instance of connection to dbase
-            $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+            $pdo = new PDO(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
             //bind and execute
 
-           $photoSql=$mysqli->prepare("SELECT * FROM photosSecure WHERE photoID= :pid");
-           $photoSql->bindparam(':pid',311 );
-           $photoSql->execute();
-           $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC);
+           $photoSql=$pdo->prepare("SELECT * FROM photosSecure WHERE photoID=?");
+           $photoSql->bindValue(1,$photoID );
+          if( $photoSql->execute()){
+              $row=$photoSql->fetchAll(PDO::FETCH_OBJ);
+
+              // $photoRow = mysqli_fetch_assoc($photoresult);
+              echo "<p>".$row['title']."</p>";
+              echo "<h3>".$row['postDate']."</h3>";
+              echo "<img src='".$row['url']."'/>";
+              echo " <p>".$row['description']."</p>";
+
+
+              $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
+              $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
+              if(mysqli_num_rows($commentresult)>1) {
+
+                  echo "<h2> Comments </h2>";
+                  while($commentRow = mysqli_fetch_assoc($commentresult)){
+                      echo "<div class = 'comments'>";
+                      echo "<h3>".$commentRow['postDate']."</h3>";
+                      echo "<p>".$commentRow['description']."</p>";
+                      echo "</div>";
+                  }
+
+              }
+              echo "<a href='addcommentform.php?id=".$photoID."'> Add Comment</a><br>";
+
+              if($adminuser){
+                  echo "<div class='error'><a href='removephoto.php?id=".$photoID."'> Delete Photo</a></div>";
+              }
+          }
+          // $photoresult=$photoSql->fetch(PDO::FETCH_ASSOC);
 
             //$photoID = $_GET['id'];
 
@@ -53,37 +81,37 @@ $login_userID= $_SESSION["userid"];
             //prevent system errors from been seen by user
            // $photoresult=mysqli_query($db,$photoSql) or die("application cannot connect;check network");
 
-            if($photoresult){
+           // if($photoresult){
                // $photoRow = mysqli_fetch_assoc($photoresult);
-                echo "<p>".$photoresult['title']."</p>";
-                echo "<h3>".$photoresult['postDate']."</h3>";
-                echo "<img src='".$photoresult['url']."'/>";
-                echo " <p>".$photoresult['description']."</p>";
+               // echo "<p>".$photoresult['title']."</p>";
+               // echo "<h3>".$photoresult['postDate']."</h3>";
+              //  echo "<img src='".$photoresult['url']."'/>";
+              //  echo " <p>".$photoresult['description']."</p>";
 
 
-                $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
-                $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
-                if(mysqli_num_rows($commentresult)>1) {
+               // $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
+               // $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
+               // if(mysqli_num_rows($commentresult)>1) {
 
-                    echo "<h2> Comments </h2>";
-                    while($commentRow = mysqli_fetch_assoc($commentresult)){
-                        echo "<div class = 'comments'>";
-                        echo "<h3>".$commentRow['postDate']."</h3>";
-                        echo "<p>".$commentRow['description']."</p>";
-                        echo "</div>";
-                    }
+                   // echo "<h2> Comments </h2>";
+                  //  while($commentRow = mysqli_fetch_assoc($commentresult)){
+                  //      echo "<div class = 'comments'>";
+                  //      echo "<h3>".$commentRow['postDate']."</h3>";
+                 //       echo "<p>".$commentRow['description']."</p>";
+                //        echo "</div>";
+               //     }
 
-                }
-                echo "<a href='addcommentform.php?id=".$photoID."'> Add Comment</a><br>";
+               // }
+               // echo "<a href='addcommentform.php?id=".$photoID."'> Add Comment</a><br>";
 
-                if($adminuser){
-                    echo "<div class='error'><a href='removephoto.php?id=".$photoID."'> Delete Photo</a></div>";
-                }
+              // if($adminuser){
+               //     echo "<div class='error'><a href='removephoto.php?id=".$photoID."'> Delete Photo</a></div>";
+              //  }
 
-            }
-            else{
-                echo "<h1>No Photos Found</h1>";
-            }
+           // }
+           // else{
+            //    echo "<h1>No Photos Found</h1>";
+           // }
 
         }
     else{
