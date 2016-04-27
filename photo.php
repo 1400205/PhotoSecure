@@ -4,6 +4,7 @@ session_start()
 <?php
 include("check.php");
 include("connection.php");
+$ip=$_SESSION["ip"];
 ?>
 <!doctype html>
 <html>
@@ -19,7 +20,7 @@ include("connection.php");
     <?php
     if(isset($_GET['id']))
     {
-        if (!($ip==get_client_ip())){
+        if (!($ip==$_SERVER['REMOTE_ADDR'])){
             header("location: logout.php"); // Redirecting To Other Page
         }
 

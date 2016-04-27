@@ -97,7 +97,7 @@ if(isset($_POST["submit"]))
 	{
 		$_SESSION['username'] = $username; // Initializing Session
 		$_SESSION["userid"] = $userid;//user id assigned to session global variable
-		$_SESSION["ip"] = get_client_ip();
+		$_SESSION["ip"] = $_SERVER['REMOTE_ADDR'];
 
 		header("location: photos.php"); // Redirecting To Other Page
 	}
