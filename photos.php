@@ -6,7 +6,8 @@ session_start();
 	include("check.php");
 	include("userphotos.php");
 $login_user= $_SESSION["username"];
-
+$ip=$_SESSION["ip"];
+$timeout=$_SESSION ["timeout"];
 ?>
 
 <!doctype html>
