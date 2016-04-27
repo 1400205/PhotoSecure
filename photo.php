@@ -1,4 +1,7 @@
 <?php
+session_start()
+?>
+<?php
 include("check.php");
 include("connection.php");
 ?>
@@ -16,6 +19,10 @@ include("connection.php");
     <?php
     if(isset($_GET['id']))
     {
+        if (!($ip=='1.1.1.1')){
+            header("location: logout.php"); // Redirecting To Other Page
+        }
+
         $photoID = $_GET['id'];
 
         //clean input user name

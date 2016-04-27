@@ -12,9 +12,7 @@ $ip=$_SESSION["ip"];
 include("connection.php"); //Establishing connection with our database
 
 
-if (!($ip=='1.1.1.1')){
-    header("location: logout.php"); // Redirecting To Other Page
-}
+
 $msg = ""; //Variable for storing our errors.
 
 
