@@ -38,7 +38,7 @@ include("connection.php");
         $photoSql=$pdo->prepare("SELECT * FROM photosSecure WHERE photoID=?");
         $photoSql->bindValue(1,$photoID, PDO::PARAM_INT );
         if( $photoSql->execute()){
-            $row=$photoSql->fetchAll(PDO::FETCH_ASSOC);
+            $row=$photoSql->fetchAll(PDO::FETCH_OBJ);
 
             // $photoRow = mysqli_fetch_assoc($photoresult);
             echo "<p>".$row['title']."</p>";
