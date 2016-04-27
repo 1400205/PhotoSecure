@@ -38,7 +38,7 @@ $login_userID= $_SESSION["userid"];
            $photoSql=$pdo->prepare("SELECT * FROM photosSecure WHERE photoID=?");
            $photoSql->bindValue(1,$photoID );
           if( $photoSql->execute()){
-              $row=$photoSql->fetchAll(PDO::FETCH_OBJ);
+              $row=$photoSql->fetchAll(PDO::FETCH_ASSOC);
 
               // $photoRow = mysqli_fetch_assoc($photoresult);
               echo "<p>".$row['title']."</p>";
