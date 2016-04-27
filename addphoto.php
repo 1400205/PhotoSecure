@@ -6,11 +6,13 @@ session_start();
 <?php
 $name = $_SESSION["username"];
 $userID=$_SESSION["userid"];
+$ip=$_SESSION["ip"];
 ?>
 <?php
 include("connection.php"); //Establishing connection with our database
 
 $msg = ""; //Variable for storing our errors.
+
 
 //Function to cleanup user input for xss
 function xss_cleaner($input_str) {

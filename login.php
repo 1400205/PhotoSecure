@@ -4,6 +4,25 @@ session_start();
 <?php
 include("connection.php"); //Establishing connection with our database
 
+function get_client_ip() {
+	$ipaddress = '';
+	if (getenv('HTTP_CLIENT_IP'))
+		$ipaddress = getenv('HTTP_CLIENT_IP');
+	else if(getenv('HTTP_X_FORWARDED_FOR'))
+		$ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+	else if(getenv('HTTP_X_FORWARDED'))
+		$ipaddress = getenv('HTTP_X_FORWARDED');
+	else if(getenv('HTTP_FORWARDED_FOR'))
+		$ipaddress = getenv('HTTP_FORWARDED_FOR');
+	else if(getenv('HTTP_FORWARDED'))
+		$ipaddress = getenv('HTTP_FORWARDED');
+	else if(getenv('REMOTE_ADDR'))
+		$ipaddress = getenv('REMOTE_ADDR');
+	else
+		$ipaddress = 'UNKNOWN';
+	return $ipaddress;
+}
+
 //Function to cleanup user input for xss
 function xss_cleaner($input_str) {
 	$return_str = str_replace( array('<','>',"'",'"',')','('), array('&lt;','&gt;','&apos;','&#x22;','&#x29;','&#x28;'), $input_str );
@@ -78,6 +97,7 @@ if(isset($_POST["submit"]))
 	{
 		$_SESSION['username'] = $username; // Initializing Session
 		$_SESSION["userid"] = $userid;//user id assigned to session global variable
+		$_SESSION["ip"] = get_client_ip();
 
 		header("location: photos.php"); // Redirecting To Other Page
 	}

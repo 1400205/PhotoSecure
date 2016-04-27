@@ -6,6 +6,11 @@ session_start();
 	include("check.php");
 	include("userphotos.php");
 $login_user= $_SESSION["username"];
+$ip=$_SESSION["ip"];
+
+if ($ip==get_client_ip){
+	header("location: logout.php"); // Redirecting To Other Page
+}
 
 ?>
 
