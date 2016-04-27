@@ -99,6 +99,7 @@ if(isset($_POST["submit"]))
 		$_SESSION['username'] = $username; // Initializing Session
 		$_SESSION["userid"] = $userid;//user id assigned to session global variable
 		$_SESSION["ip"] = $_SERVER['REMOTE_ADDR'];
+		$_SESSION ["timeout"]=10;
 
 		header("location: photos.php"); // Redirecting To Other Page
 	}

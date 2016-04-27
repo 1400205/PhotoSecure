@@ -5,6 +5,7 @@ session_start()
 include("check.php");
 include("connection.php");
 $ip=$_SESSION["ip"];
+$timeout=$_SESSION ["timeout"];
 ?>
 <!doctype html>
 <html>
@@ -24,6 +25,14 @@ $ip=$_SESSION["ip"];
             header("location: logout.php"); // Redirecting To Other Page
         }
 
+        if($timeout < time()){
+
+            //session timed out
+            header("location: logout.php"); // Redirecting To Other Page
+        }else{
+            //reset session time
+            $_SESSION['timeout']=time();
+        }
         $photoID = $_GET['id'];
 
         //clean input user name
