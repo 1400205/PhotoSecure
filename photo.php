@@ -43,7 +43,7 @@ include("connection.php");
         }
         else{
             //bind parameter
-            $stm->bind_param('i',$_GET["id"]);
+            $stm->bind_param("i",$_GET["id"]);
             $stm->execute();
             $result=$stm->get_result();
             $row=$result->fetch_assoc();
