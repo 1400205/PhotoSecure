@@ -25,7 +25,9 @@ include("connection.php");
 
 
         //clean input user name
-        $photoID = $_GET['id'] ;
+       if (!( $photoID = $_GET['id'])){
+           echo "no id";
+       }
         // $photoID = stripslashes( $_GET['id'] );
        // $photoID=mysqli_real_escape_string($db,$photoID);
         //$photoID = htmlspecialchars( $photoID );
