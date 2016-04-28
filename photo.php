@@ -23,10 +23,11 @@ include("connection.php");
     <?php
     if(isset($_GET['id'])){
 
+        $photoID = $_GET['id'];
 
         //clean input user name
-        // $photoID = stripslashes( $_GET['id'] );
-       // $photoID=mysqli_real_escape_string($db,$photoID);
+        // $photoID = stripslashes( $photoID );
+        //$photoID=mysqli_real_escape_string($db,$photoID);
         //$photoID = htmlspecialchars( $photoID );
 
         //instance of connection to dbase
