@@ -23,8 +23,6 @@ include("connection.php");
     <?php
     if(isset($_GET['id'])){
 
-        $photoID = $_GET['id'];
-
         //clean input user name
         // $photoID = stripslashes( $photoID );
         //$photoID=mysqli_real_escape_string($db,$photoID);
@@ -59,6 +57,7 @@ include("connection.php");
             echo "<img src='".$row['url']."'/>";
             echo " <p>".$row['description']."</p>";
 
+                 $photoID = $_GET['id'];
 
             $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
             $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
