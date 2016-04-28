@@ -22,7 +22,7 @@ include("connection.php");
 <div id="photo">
     <?php
     if(isset($_GET['id'])){
-
+        $photoID=1;
         $photoID = $_GET['id'];
 
         //clean input user name
