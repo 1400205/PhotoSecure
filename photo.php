@@ -37,13 +37,13 @@ include("connection.php");
         }
         //sql statement
 
-       // $photosql='SELECT * FROM photosSecure WHERE photoID=?';
+        $photosql='SELECT * FROM photosSecure WHERE photoID= ?';
 
         //inititalilised the statement
         $stm=$sqlidb->init();
 
         //prepare statement
-        if(!($stm->prepare('SELECT * FROM photosSecure WHERE photoID=?'))){
+        if(!($stm->prepare($photosql))){
             echo "prepared statement failed";
         }
         else{
