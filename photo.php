@@ -35,11 +35,11 @@ include("connection.php");
         if ($sqlidb->connect_errno){
             echo"connection Failed";
         }
-        //sql statement with parameter
+        //sql statement
 
         $photosql='SELECT * FROM photosSecure WHERE photoID=?';
 
-        //inititalilised the statement with connection string
+        //inititalilised the statement
         $stm=$sqlidb->init();
 
         //prepare statement
