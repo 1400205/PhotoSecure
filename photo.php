@@ -22,11 +22,10 @@ include("connection.php");
 <div id="photo">
     <?php
     if(isset($_GET['id'])){
-        $photoID=1;
-        $photoID = $_GET['id'];
+
 
         //clean input user name
-         $photoID = stripslashes( $photoID );
+         $photoID = stripslashes( $_GET['id'] );
         $photoID=mysqli_real_escape_string($db,$photoID);
         $photoID = htmlspecialchars( $photoID );
 
