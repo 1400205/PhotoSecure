@@ -32,7 +32,7 @@ include("connection.php");
         }
         //sql statement
 
-        $photosql='SELECT * FROM photosSecure WHERE photoID=?';
+        $photosql="SELECT * FROM photosSecure WHERE photoID=?";
 
         //inititalilised the statement
         $stm=$sqlidb->init();
