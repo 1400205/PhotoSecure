@@ -21,9 +21,9 @@ include("connection.php");
 <h4>Welcome <?php echo $login_user;?>  <a href="photos.php" style="font-size:18px">Photos</a>||<a href="searchphotos.php" style="font-size:18px">Search</a>||<a href="logout.php" style="font-size:18px">Logout</a></h4>
 <div id="photo">
     <?php
-    if(isset($_GET["id"])){
+    if(isset($_GET['id'])){
 
-        $photoID = $_GET["id"];
+        //$photoID = $_GET['id'];
 
         //instance of connection to dbase
         $sqlidb = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
@@ -32,7 +32,7 @@ include("connection.php");
         }
         //sql statement
 
-        $photosql="SELECT * FROM photosSecure WHERE photoID=?";
+        $photosql='SELECT * FROM photosSecure WHERE photoID=?';
 
         //inititalilised the statement
         $stm=$sqlidb->init();
@@ -43,7 +43,7 @@ include("connection.php");
         }
         else{
             //bind parameter
-            $stm->bind_param("i",$_GET["id"]);
+            $stm->bind_param('i',$_GET['id']);
             $stm->execute();
             $result=$stm->get_result();
             $row=$result->fetch_assoc();
@@ -56,7 +56,7 @@ include("connection.php");
 
 
 
-            $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
+            $commentSql="SELECT * FROM commentsSecure WHERE photoID=311";
             $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
             if(mysqli_num_rows($commentresult)>1) {
 
