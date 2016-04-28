@@ -78,12 +78,12 @@ $timeout=$_SESSION ["timeout"];
     }
     else{
         //bind parameter
-        $stm->bind_param('i',$_GET['id']);
+        $stm->bind_param('i',$photoID);
         $stm->execute();
         $stm->bind_result($myid);
         $stm->fetch;
         $stm->close();
-        $row=$stm;
+        echo $myid;
 
 
             echo "<h1>".$row['title']."</h1>";
