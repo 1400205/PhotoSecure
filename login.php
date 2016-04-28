@@ -79,6 +79,11 @@ if(isset($_POST["submit"]))
 
 		if (!$mysqli->query("CALL getUserID('$username','$password',@userID)")) {
 			//echo "CALL failed: (" . $mysqli->errno . ") " . $mysqli->error;
+
+			//get a variable to count number of logins
+			$count=0;
+			$count=$count+1;
+			echo  $count;
 		}
 
 
