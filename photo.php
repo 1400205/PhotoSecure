@@ -27,7 +27,7 @@ include("connection.php");
         //clean input user name
          $photoID = stripslashes( $_GET['id'] );
         $photoID=mysqli_real_escape_string($db,$photoID);
-        $photoID = htmlspecialchars( $photoID );
+        //$photoID = htmlspecialchars( $photoID );
 
         //instance of connection to dbase
         $sqlidb = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
