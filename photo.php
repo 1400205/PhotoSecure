@@ -37,7 +37,10 @@ $timeout=$_SESSION ["timeout"];
 
 
 
-        $photoID = $_GET['id'];
+       if( $photoID = $_GET['id']){
+           echo $photoID;
+       }
+
 
         //clean input user name
         $photoID = stripslashes( $photoID );
