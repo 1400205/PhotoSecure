@@ -25,9 +25,6 @@ include("connection.php");
 
 
         //clean input user name
-       if (!( $photoID = $_GET['id'])){
-           echo "no id";
-       }
         // $photoID = stripslashes( $_GET['id'] );
        // $photoID=mysqli_real_escape_string($db,$photoID);
         //$photoID = htmlspecialchars( $photoID );
@@ -50,7 +47,7 @@ include("connection.php");
         }
         else{
             //bind parameter
-            $stm->bind_param('i',$photoID);
+            $stm->bind_param('i',$_GET['id']);
             $stm->execute();
             $result=$stm->get_result();
             $row=$result->fetch_assoc();
