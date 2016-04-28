@@ -6,6 +6,10 @@ include("check.php");
 include("connection.php");
 $ip=$_SESSION["ip"];
 $timeout=$_SESSION ["timeout"];
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
 <!doctype html>
 <html>
