@@ -25,6 +25,8 @@ error_reporting(E_ALL);
     <?php
     if(isset($_GET['id']))
     {
+
+        $photid=$_GET['id'];
         if (!($ip==$_SERVER['REMOTE_ADDR'])){
             header("location: logout.php"); // Redirecting To Other Page
         }
