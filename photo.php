@@ -23,6 +23,8 @@ include("connection.php");
     <?php
     if(isset($_GET['id'])){
 
+        $photoID = $_GET['id'];
+
         //clean input user name
         // $photoID = stripslashes( $photoID );
         //$photoID=mysqli_real_escape_string($db,$photoID);
@@ -35,18 +37,18 @@ include("connection.php");
         }
         //sql statement
 
-        $photosql='SELECT * FROM photosSecure WHERE photoID=?';
+       // $photosql='SELECT * FROM photosSecure WHERE photoID=?';
 
         //inititalilised the statement
         $stm=$sqlidb->init();
 
         //prepare statement
-        if(!($stm->prepare($photosql))){
+        if(!($stm->prepare('SELECT * FROM photosSecure WHERE photoID=?'))){
             echo "prepared statement failed";
         }
         else{
             //bind parameter
-            $stm->bind_param('i', $_GET['id']);
+            $stm->bindparam('i', $_GET['id']);
             $stm->execute();
             $result=$stm->get_result();
             $row=$result->fetch_assoc();
@@ -57,7 +59,7 @@ include("connection.php");
             echo "<img src='".$row['url']."'/>";
             echo " <p>".$row['description']."</p>";
 
-                 $photoID = $_GET['id'];
+
 
             $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
             $commentresult=mysqli_query($db,$commentSql) or die ("application cannot connect;check network");//die(mysqli_error($db));
