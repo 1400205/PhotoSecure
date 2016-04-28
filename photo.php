@@ -34,6 +34,17 @@ $timeout=$_SESSION ["timeout"];
             $_SESSION['timeout']=time();
         }
 
+        /**
+        $stmt = $mysqli->prepare("SELECT filmID, filmName FROM movies WHERE filmID = ?");
+        $stmt->bind_param('i', $_GET['filmID']);
+        $stmt->execute();
+        $stmt->bind_result($filmName);
+        $stmt->fetch();
+        $stmt->close();
+        echo $filmName;
+         **/
+
+
 
 
 
@@ -59,7 +70,7 @@ $timeout=$_SESSION ["timeout"];
         $photosql='SELECT * FROM photosSecure WHERE photoID=?';
 
     //inititalilised the statement
-    $stm=$sqlidb->init();
+    //$stm=$sqlidb->init();
 
     //prepare statement
     if(!($stm->prepare($photosql))){
@@ -69,8 +80,11 @@ $timeout=$_SESSION ["timeout"];
         //bind parameter
         $stm->bind_param('i',$_GET['id']);
         $stm->execute();
-        $result=$stm->get_result();
-        $row=$result->fetch_assoc();
+        $stm->bind_result($myid);
+        $stm->fetch;
+        $stm->close();
+        $row=$stm;
+
 
             echo "<h1>".$row['title']."</h1>";
             echo "<h3>".$row['postDate']."</h3>";
