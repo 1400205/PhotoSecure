@@ -47,14 +47,35 @@ $timeout=$_SESSION ["timeout"];
         if( $photoID ){
             echo $photoID;
         }
-        $photoSql="SELECT * FROM photosSecure WHERE photoID='$photoID'";
-        $photoresult=mysqli_query($db,$photoSql) or die(mysqli_error($db));
-        if(mysqli_num_rows($photoresult)==1){
-            $photoRow = mysqli_fetch_assoc($photoresult);
-            echo "<h1>".$photoRow['title']."</h1>";
-            echo "<h3>".$photoRow['postDate']."</h3>";
-            echo "<img src='".$photoRow['url']."'/>";
-            echo " <p>".$photoRow['description']."</p>";
+
+
+        //instance of connection to dbase
+        $sqlidb = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        if ($sqlidb->connect_errno){
+            echo"connection Failed";
+        }
+        //sql statement
+
+        $photosql='SELECT * FROM photosSecure WHERE photoID=?';
+
+    //inititalilised the statement
+    $stm=$sqlidb->init();
+
+    //prepare statement
+    if(!($stm->prepare($photosql))){
+        echo "prepared statement failed";
+    }
+    else{
+        //bind parameter
+        $stm->bind_param('i',$_GET['id']);
+        $stm->execute();
+        $result=$stm->get_result();
+        $row=$result->fetch_assoc();
+
+            echo "<h1>".$row['title']."</h1>";
+            echo "<h3>".$row['postDate']."</h3>";
+            echo "<img src='".$row['url']."'/>";
+            echo " <p>".$row['description']."</p>";
 
 
             $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
@@ -76,9 +97,6 @@ $timeout=$_SESSION ["timeout"];
                 echo "<div class='error'><a href='removephoto.php?id=".$photoID."'> Delete Photo</a></div>";
             }
 
-        }
-        else{
-            echo "<h1>No Photos Found</h1>";
         }
 
     }
