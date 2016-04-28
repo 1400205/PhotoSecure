@@ -3,6 +3,9 @@ session_start();
 ?>
 <?php
 include("connection.php"); //Establishing connection with our database
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 function get_client_ip() {
 	$ipaddress = '';
