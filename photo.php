@@ -37,16 +37,16 @@ $timeout=$_SESSION ["timeout"];
 
 
 
-       if( $photoID = $_GET['id']){
-           echo $photoID;
-       }
 
+        $photoID = $_GET['id'];
 
         //clean input user name
         $photoID = stripslashes( $photoID );
         $photoID=mysqli_real_escape_string($db,$photoID);
         $photoID = htmlspecialchars( $photoID );
-
+        if( $photoID ){
+            echo $photoID;
+        }
         $photoSql="SELECT * FROM photosSecure WHERE photoID='$photoID'";
         $photoresult=mysqli_query($db,$photoSql) or die(mysqli_error($db));
         if(mysqli_num_rows($photoresult)==1){
