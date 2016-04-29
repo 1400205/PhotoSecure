@@ -73,7 +73,7 @@ error_reporting(E_ALL);
       // $result = $stmt->get_result();
            $stmt->bind_result($title, $pdate,$url,$desc);
 
-        while ($stmt->fetch()){
+        if ($stmt->fetch()){
             echo "<h1>".$title."</h1>";
            echo "<h3>".$pdate."</h3>";
             echo "<img src='".$url."'/>";
