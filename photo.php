@@ -70,8 +70,8 @@ error_reporting(E_ALL);
         //bind parameter
         $stmt->bind_param('i',$photoID);
         $stmt->execute();
-       // $result = $stmt->get_result();
-       $row=db2_fetch_object( $stmt);
+       $result = $stmt->get_result();
+       $row=db2_fetch_object( $result);
             echo "<h1>".$row['title']."</h1>";
             echo "<h3>".$row['postDate']."</h3>";
             echo "<img src='".$row['url']."'/>";
