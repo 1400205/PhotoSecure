@@ -79,7 +79,7 @@ error_reporting(E_ALL);
            // echo "<img src='".$url."'/>";
             //echo " <p>".$desc."</p>";
 
-            echo "<h1>".$row[0]."</h1>";
+            echo "<h1>".$row['title']."</h1>";
             echo "<h3>".$row['postDate']."</h3>";
             echo "<img src='".$row['url']."'/>";
             echo " <p>".$row['description']."</p>";
