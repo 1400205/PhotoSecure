@@ -68,7 +68,7 @@ error_reporting(E_ALL);
 
 
         //bind parameter
-        $stmt->bind_param('i',$photoID);
+        $stmt->bind_param('i',$_GET['id']);
         $stmt->execute();
        $result = $stmt->get_result();
 
