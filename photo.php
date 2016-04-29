@@ -73,13 +73,14 @@ error_reporting(E_ALL);
        $result = $stmt->get_result();
 
         while ($row = $result->fetch_row()){
+            echo "<h1>".$row['title']."</h1>";
+            echo "<h3>".$row['postDate']."</h3>";
+            echo "<img src='".$row['url']."'/>";
+            echo " <p>".$row['description']."</p>";
 
-        }
-           echo "<h1>".$row['title']."</h1>";
-           echo "<h3>".$row['postDate']."</h3>";
-           echo "<img src='".$row['url']."'/>";
-           echo " <p>".$row['description']."</p>";
-       }$result->close();
+        }$result->close();
+
+       }$sqlidb->close();
 
 
 
@@ -104,7 +105,7 @@ error_reporting(E_ALL);
             }
 
 
-$sqlidb->close();
+
     }
     else{
 
