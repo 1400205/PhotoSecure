@@ -79,10 +79,10 @@ error_reporting(E_ALL);
            // echo "<img src='".$url."'/>";
             //echo " <p>".$desc."</p>";
 
-            echo "<h1>".$row[0]."</h1>";
-            echo "<h3>".$row[1]."</h3>";
-            echo "<img src='".$row[2]."'/>";
-            echo " <p>".$row[3]."</p>";
+            echo "<h1>".$row[1]."</h1>";
+            echo "<h3>".$row[2]."</h3>";
+            echo "<img src='".$row[3]."'/>";
+            echo " <p>".$row[4]."</p>";
 
         }//$stmt->close();
 
