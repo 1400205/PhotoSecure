@@ -77,7 +77,7 @@ if(isset($_POST["submit"]))
 			echo "Stored procedure creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
 		}
 
-				// Prepare OUT parameters
+		// Prepare OUT parameters
 		$mysqli->query("SET @userID=0");
 
 		if (!$mysqli->query("CALL getUserID('$username','$password',@userID)")) {
@@ -103,7 +103,7 @@ if(isset($_POST["submit"]))
 
 	}else
 	{
-			//get session data
+		//get session data
 		$_SESSION['username'] = $username; // Initializing Session
 		$_SESSION["userid"] = $userid;//user id assigned to session global variable
 		$_SESSION["ip"] = $_SERVER['REMOTE_ADDR'];
