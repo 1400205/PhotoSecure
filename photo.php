@@ -80,9 +80,9 @@ error_reporting(E_ALL);
             //echo " <p>".$desc."</p>";
 
             echo "<h1>".$row[1]."</h1>";
-            echo "<h3>".$row[2]."</h3>";
+            echo "<h3>".$row[5]."</h3>";
             echo "<img src='".$row[3]."'/>";
-            echo " <p>".$row[4]."</p>";
+            echo " <p>".$row[2]."</p>";
 
         }//$stmt->close();
 
