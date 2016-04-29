@@ -63,19 +63,25 @@ error_reporting(E_ALL);
         }
         //prepared statement statement
 
-       if(!($stmt=$sqlidb->prepare("SELECT * FROM photosSecure WHERE photoID=?"))) {
-           echo "prepared failed:" . $sqlidb_ > ernno . ")" . $sqlidb->error;
-       }
-    else{
+       if(($stmt=$sqlidb->prepare("SELECT * FROM photosSecure WHERE photoID=?"))) {
+          // echo "prepared failed:" . $sqlidb_ > ernno . ")" . $sqlidb->error;
+
+
         //bind parameter
         $stmt->bind_param('i',$photoID);
         $stmt->execute();
        $result = $stmt->get_result();
-       $row=db2_fetch_object( $result);
-            echo "<h1>".$row['title']."</h1>";
-            echo "<h3>".$row['postDate']."</h3>";
-            echo "<img src='".$row['url']."'/>";
-            echo " <p>".$row['description']."</p>";
+
+        while ($row = $result->fetch_row()){
+
+        }
+           echo "<h1>".$row['title']."</h1>";
+           echo "<h3>".$row['postDate']."</h3>";
+           echo "<img src='".$row['url']."'/>";
+           echo " <p>".$row['description']."</p>";
+       }$result->close();
+
+
 
 
             $commentSql="SELECT * FROM commentsSecure WHERE photoID='$photoID'";
@@ -97,8 +103,8 @@ error_reporting(E_ALL);
                 echo "<div class='error'><a href='removephoto.php?id=".$photoID."'> Delete Photo</a></div>";
             }
 
-        }
 
+$sqlidb->close();
     }
     else{
 
