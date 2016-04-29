@@ -80,9 +80,9 @@ error_reporting(E_ALL);
             //echo " <p>".$desc."</p>";
 
             echo "<h1>".$row[0]."</h1>";
-            echo "<h3>".$row['postDate']."</h3>";
-            echo "<img src='".$row['url']."'/>";
-            echo " <p>".$row['description']."</p>";
+            echo "<h3>".$row[1]."</h3>";
+            echo "<img src='".$row[2]."'/>";
+            echo " <p>".$row[3]."</p>";
 
         }//$stmt->close();
 
