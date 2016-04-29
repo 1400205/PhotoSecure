@@ -70,7 +70,7 @@ error_reporting(E_ALL);
         //bind parameter
         $stmt->bind_param('i',$photoID);
         $stmt->execute();
-       $row= $stmt->fetch;
+       $row= mysqli_fetch_assoc($stmt);
             echo "<h1>".$row['title']."</h1>";
             echo "<h3>".$row['postDate']."</h3>";
             echo "<img src='".$row['url']."'/>";
