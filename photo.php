@@ -63,7 +63,7 @@ error_reporting(E_ALL);
         }
         //prepared statement statement
 
-       if(($stmt=$sqlidb->prepare("SELECT title,postDate,url,description FROM photosSecure WHERE photoID=?"))) {
+       if(($stmt=$sqlidb->prepare("SELECT * FROM photosSecure WHERE photoID=?"))) {
           // echo "prepared failed:" . $sqlidb_ > ernno . ")" . $sqlidb->error;
 
 
