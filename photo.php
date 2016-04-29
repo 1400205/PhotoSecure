@@ -84,7 +84,7 @@ error_reporting(E_ALL);
             // echo "<img src='".$row['url']."'/>";
             //echo " <p>".$row['description']."</p>";
 
-        }$stmt->close();
+        }//$stmt->close();
 
        }$sqlidb->close();
 
