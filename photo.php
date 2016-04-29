@@ -70,19 +70,19 @@ error_reporting(E_ALL);
         //bind parameter
         $stmt->bind_param('i',$_GET['id']);
         $stmt->execute();
-      // $result = $stmt->get_result();
-           $stmt->bind_result($title, $pdate,$url,$desc);
+      $result = $stmt->get_result();
+         //  $stmt->bind_result($title, $pdate,$url,$desc);
 
-        if ($stmt->fetch()){
-            echo "<h1>".$title."</h1>";
-           echo "<h3>".$pdate."</h3>";
-            echo "<img src='".$url."'/>";
-            echo " <p>".$desc."</p>";
+        if ($row=$result->fetch_row()){
+           // echo "<h1>".$title."</h1>";
+           //echo "<h3>".$pdate."</h3>";
+           // echo "<img src='".$url."'/>";
+            //echo " <p>".$desc."</p>";
 
-            // echo "<h1>".$row['title']."</h1>";
-            // echo "<h3>".$row['postDate']."</h3>";
-            // echo "<img src='".$row['url']."'/>";
-            //echo " <p>".$row['description']."</p>";
+            echo "<h1>".$row['title']."</h1>";
+            echo "<h3>".$row['postDate']."</h3>";
+            echo "<img src='".$row['url']."'/>";
+            echo " <p>".$row['description']."</p>";
 
         }//$stmt->close();
 
