@@ -40,22 +40,12 @@ error_reporting(E_ALL);
             $_SESSION['timeout']=time();
         }
 
-        /**
-        $stmt = $mysqli->prepare("SELECT filmID, filmName FROM movies WHERE filmID = ?");
-        $stmt->bind_param('i', $_GET['filmID']);
-        $stmt->execute();
-        $stmt->bind_result($filmName);
-        $stmt->fetch();
-        $stmt->close();
-        echo $filmName;
-         **/
 
 
 
 
 
-
-        //$photoID = $_GET['id'];
+        $photoID = $_GET['id'];
 
         //clean input user name
         //$photoID = stripslashes( $photoID );
@@ -71,27 +61,16 @@ error_reporting(E_ALL);
         if ($sqlidb->connect_errno){
             echo"connection Failed";
         }
-        //sql statement
+        //prepared statement statement
 
-        $photosql='SELECT * FROM photosSecure WHERE photoID=?';
-
-    //inititalilised the statement
-    //$stm=$sqlidb->init();
-
-    //prepare statement
-    if(!($stm->prepare($photosql))){
-        echo "prepared statement failed";
-    }
+       if(!($stmt=$sqlidb->prepare("SELECT * FROM photosSecure WHERE photoID=?"))) {
+           echo "prepared failed:" . $sqlidb_ > ernno . ")" . $sqlidb->error;
+       }
     else{
         //bind parameter
-        $stm->bind_param('i',$photoID);
-        $stm->execute();
-        $stm->bind_result($myid);
-        $stm->fetch;
-        $stm->close();
-        echo $myid;
-
-
+        $stmt->bind_param('i',$photoID);
+        $stmt->execute();
+       $row= $stmt->fetch;
             echo "<h1>".$row['title']."</h1>";
             echo "<h3>".$row['postDate']."</h3>";
             echo "<img src='".$row['url']."'/>";
